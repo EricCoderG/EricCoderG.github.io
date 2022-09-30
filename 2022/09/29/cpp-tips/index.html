@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新 cpp删除容器中重复元素的方法：1a.erase(unique(a.begin(),a.end()),a.end())；  stl中有关排列组合的api123do &amp;#123;&#x2F;&#x2F;func();&amp;#125; while (next_permutation(s.begin(), s.end()))  头文件中的模板类编译时的一个坑">
+<meta name="description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cpp-tips">
 <meta property="og:url" content="https://grl2939.top/2022/09/29/cpp-tips/index.html">
 <meta property="og:site_name" content="GRL&#39;s Blog">
-<meta property="og:description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新 cpp删除容器中重复元素的方法：1a.erase(unique(a.begin(),a.end()),a.end())；  stl中有关排列组合的api123do &amp;#123;&#x2F;&#x2F;func();&amp;#125; while (next_permutation(s.begin(), s.end()))  头文件中的模板类编译时的一个坑">
+<meta property="og:description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-09-29T13:55:46.000Z">
-<meta property="article:modified_time" content="2022-09-30T01:05:56.251Z">
+<meta property="article:modified_time" content="2022-09-30T06:37:25.109Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary">
 
@@ -322,6 +322,8 @@
 
       
         <p>这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新</p>
+<span id="more"></span>
+
 <h4 id="cpp删除容器中重复元素的方法："><a href="#cpp删除容器中重复元素的方法：" class="headerlink" title="cpp删除容器中重复元素的方法："></a>cpp删除容器中重复元素的方法：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.<span class="built_in">erase</span>(<span class="built_in">unique</span>(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>()),a.<span class="built_in">end</span>())；</span><br></pre></td></tr></table></figure>
 
 <h4 id="stl中有关排列组合的api"><a href="#stl中有关排列组合的api" class="headerlink" title="stl中有关排列组合的api"></a>stl中有关排列组合的api</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line"><span class="comment">//func();</span></span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="built_in">next_permutation</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>()))</span><br></pre></td></tr></table></figure>
