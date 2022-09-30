@@ -329,9 +329,14 @@
 
 <h4 id="2-stl中有关排列组合的api"><a href="#2-stl中有关排列组合的api" class="headerlink" title="2.stl中有关排列组合的api"></a>2.stl中有关排列组合的api</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	<span class="comment">//func();</span></span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="built_in">next_permutation</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>()))</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li></li>
-</ol>
+<h4 id="3-头文件中的模板类编译时的一个坑及其原因"><a href="#3-头文件中的模板类编译时的一个坑及其原因" class="headerlink" title="3.头文件中的模板类编译时的一个坑及其原因"></a>3.头文件中的模板类编译时的一个坑及其原因</h4><p>如果把模板类的声明和定义都放在头文件中。需要用到模板类的时候，只需要包含该头文件，然后进行实例化。</p>
+<p>如果模板类的声明和定义分别放在头文件和源文件中。当实例化的时候，只包含头文件会发证链接错误。</p>
+<p>原因是模板类的实例化要分成两个步骤，模板的特例化和特例的实例化。</p>
+<p>编译器在编译阶段，由于没有定义，所以编译器不能生成具体的模板特例，但是这并不会报错误，编译器将把问题抛给链接器来做。在编译源文件的时候，程序找不到该模板的特例，只是有模板而已，所以无法生成对象。所以会发生错误。</p>
+<h4 id="4-lower-bound"><a href="#4-lower-bound" class="headerlink" title="4.lower_bound"></a>4.lower_bound</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">lower_bound</span>(<span class="type">int</span> *left, <span class="type">int</span> *right, <span class="type">int</span> val);</span><br><span class="line"><span class="comment">//返回从left开始第一个&gt;=val元素的地址</span></span><br><span class="line"><span class="comment">//ex:</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">8</span>] = &#123;<span class="number">4</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">30</span>,<span class="number">69</span>,<span class="number">70</span>,<span class="number">96</span>,<span class="number">100</span>&#125;;</span><br><span class="line"><span class="type">int</span> pos = <span class="built_in">lower_bound</span>(a,a+<span class="number">8</span>,<span class="number">11</span>)-a;</span><br><span class="line"><span class="comment">//pos = 2;</span></span><br><span class="line"><span class="comment">//类似的有upper_bound</span></span><br><span class="line"><span class="comment">//返回的是从left开始第一个&gt;val元素的地址</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-能读入空格和回车符的输入方式"><a href="#5-能读入空格和回车符的输入方式" class="headerlink" title="5.能读入空格和回车符的输入方式"></a>5.能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string s;</span><br><span class="line"><span class="type">char</span> c;</span><br><span class="line"><span class="keyword">while</span> (cin.<span class="built_in">peek</span>() != EOF) &#123;</span><br><span class="line">    c = cin.<span class="built_in">get</span>();</span><br><span class="line">    s += c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
           
         
