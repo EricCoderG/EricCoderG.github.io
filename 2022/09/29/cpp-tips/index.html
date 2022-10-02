@@ -94,7 +94,7 @@
 <meta property="og:description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-09-29T13:55:46.000Z">
-<meta property="article:modified_time" content="2022-10-01T03:09:56.767Z">
+<meta property="article:modified_time" content="2022-10-02T07:17:45.083Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary">
 
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  402
+                  724
                 </span>
               
 
@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -419,7 +419,8 @@
 <p>如果模板类的声明和定义分别放在头文件和源文件中。当实例化的时候，只包含头文件会发证链接错误。</p>
 <p>原因是模板类的实例化要分成两个步骤，模板的特例化和特例的实例化。</p>
 <p>编译器在编译阶段，由于没有定义，所以编译器不能生成具体的模板特例，但是这并不会报错误，编译器将把问题抛给链接器来做。在编译源文件的时候，程序找不到该模板的特例，只是有模板而已，所以无法生成对象。所以会发生错误。</p>
-<h4 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound"></a>lower_bound</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">lower_bound</span>(<span class="type">int</span> *left, <span class="type">int</span> *right, <span class="type">int</span> val);</span><br><span class="line"><span class="comment">//返回从left开始第一个&gt;=val元素的地址</span></span><br><span class="line"><span class="comment">//ex:</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">8</span>] = &#123;<span class="number">4</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">30</span>,<span class="number">69</span>,<span class="number">70</span>,<span class="number">96</span>,<span class="number">100</span>&#125;;</span><br><span class="line"><span class="type">int</span> pos = <span class="built_in">lower_bound</span>(a,a+<span class="number">8</span>,<span class="number">11</span>)-a;</span><br><span class="line"><span class="comment">//pos = 2;</span></span><br><span class="line"><span class="comment">//类似的有upper_bound</span></span><br><span class="line"><span class="comment">//返回的是从left开始第一个&gt;val元素的地址</span></span><br></pre></td></tr></table></figure>
+<h4 id="lower-bound-amp-amp-upper-bound"><a href="#lower-bound-amp-amp-upper-bound" class="headerlink" title="lower_bound &amp;&amp; upper_bound"></a>lower_bound &amp;&amp; upper_bound</h4><p>lower_bound( )和upper_bound( )都是利用二分查找的方法在一个排好序的数组中进行查找元素的方法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在从小到大的排序数组中,以vector&lt;int&gt; nums为例子</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; nums;</span><br><span class="line"><span class="type">int</span> idx = <span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), target) - nums.<span class="built_in">begin</span>();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> idx = <span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), target) - nums.<span class="built_in">begin</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//在从大到小的排序数组中，重载lower_bound()和upper_bound()</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), target, <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), target, <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br></pre></td></tr></table></figure>
 
 <h4 id="能读入空格和回车符的输入方式"><a href="#能读入空格和回车符的输入方式" class="headerlink" title="能读入空格和回车符的输入方式"></a>能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string s;</span><br><span class="line"><span class="type">char</span> c;</span><br><span class="line"><span class="keyword">while</span> (cin.<span class="built_in">peek</span>() != EOF) &#123;</span><br><span class="line">    c = cin.<span class="built_in">get</span>();</span><br><span class="line">    s += c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -606,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">cpp删除容器中重复元素的方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stl%E4%B8%AD%E6%9C%89%E5%85%B3%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E7%9A%84api"><span class="nav-number">2.</span> <span class="nav-text">stl中有关排列组合的api</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E7%B1%BB%E7%BC%96%E8%AF%91%E6%97%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91%E5%8F%8A%E5%85%B6%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.</span> <span class="nav-text">头文件中的模板类编译时的一个坑及其原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lower-bound"><span class="nav-number">4.</span> <span class="nav-text">lower_bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E8%AF%BB%E5%85%A5%E7%A9%BA%E6%A0%BC%E5%92%8C%E5%9B%9E%E8%BD%A6%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">能读入空格和回车符的输入方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">cpp删除容器中重复元素的方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stl%E4%B8%AD%E6%9C%89%E5%85%B3%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E7%9A%84api"><span class="nav-number">2.</span> <span class="nav-text">stl中有关排列组合的api</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E7%B1%BB%E7%BC%96%E8%AF%91%E6%97%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91%E5%8F%8A%E5%85%B6%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.</span> <span class="nav-text">头文件中的模板类编译时的一个坑及其原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lower-bound-amp-amp-upper-bound"><span class="nav-number">4.</span> <span class="nav-text">lower_bound &amp;&amp; upper_bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E8%AF%BB%E5%85%A5%E7%A9%BA%E6%A0%BC%E5%92%8C%E5%9B%9E%E8%BD%A6%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">能读入空格和回车符的输入方式</span></a></li></ol></div>
             
 
           </div>
@@ -640,7 +641,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">513</span>
+    <span title="Site words total count">835</span>
   
 </div>
 
