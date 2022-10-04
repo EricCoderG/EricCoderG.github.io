@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>cpp-坑</title>
-    <url>/2022/10/04/cpp-%E5%9D%91/</url>
-    <content><![CDATA[<p>这篇博客整理了自己在学习cpp时踩的一些坑，会持续更新</p>
-<h4 id="头文件中的模板类编译时的一个坑及其原因"><a href="#头文件中的模板类编译时的一个坑及其原因" class="headerlink" title="头文件中的模板类编译时的一个坑及其原因"></a>头文件中的模板类编译时的一个坑及其原因</h4><p>如果把模板类的声明和定义都放在头文件中。需要用到模板类的时候，只需要包含该头文件，然后进行实例化。</p>
-<p>如果模板类的声明和定义分别放在头文件和源文件中。当实例化的时候，只包含头文件会发证链接错误。</p>
-<p>原因是模板类的实例化要分成两个步骤，模板的特例化和特例的实例化。</p>
-<p>编译器在编译阶段，由于没有定义，所以编译器不能生成具体的模板特例，但是这并不会报错误，编译器将把问题抛给链接器来做。在编译源文件的时候，程序找不到该模板的特例，只是有模板而已，所以无法生成对象。所以会发生错误。</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-  </entry>
-  <entry>
     <title>cpp-header</title>
     <url>/2022/10/04/cpp-header/</url>
     <content><![CDATA[<p>由于在上机考试的时候编辑器的原因，在这里整理了一些常用函数以及需要的头文件</p>
+<span id="more"></span>
+
 <h4 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-comment">/**memset是一个初始化函数，作用是将某一块内存中的全部设置为指定的值。</span><br><span class="hljs-comment">s指向要填充的内存块。</span><br><span class="hljs-comment">c是要被设置的值。</span><br><span class="hljs-comment">n是要被设置该值的字符数。</span><br><span class="hljs-comment">返回类型是一个指向存储区s的指针。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">memset</span><span class="hljs-params">(<span class="hljs-type">void</span> *s, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> n)</span></span>; <br></code></pre></td></tr></table></figure>
 
 ]]></content>
@@ -39,6 +28,21 @@
 
 <h4 id="能读入空格和回车符的输入方式"><a href="#能读入空格和回车符的输入方式" class="headerlink" title="能读入空格和回车符的输入方式"></a>能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">string s;<br><span class="hljs-type">char</span> c;<br><span class="hljs-keyword">while</span> (cin.<span class="hljs-built_in">peek</span>() != EOF) &#123;<br>    c = cin.<span class="hljs-built_in">get</span>();<br>    s += c;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>cpp-坑</title>
+    <url>/2022/10/04/cpp-%E5%9D%91/</url>
+    <content><![CDATA[<p>这篇博客整理了自己在学习cpp时踩的一些坑……</p>
+<span id="more"></span>
+
+<h4 id="头文件中的模板类编译时的一个坑及其原因"><a href="#头文件中的模板类编译时的一个坑及其原因" class="headerlink" title="头文件中的模板类编译时的一个坑及其原因"></a>头文件中的模板类编译时的一个坑及其原因</h4><p>如果把模板类的声明和定义都放在头文件中。需要用到模板类的时候，只需要包含该头文件，然后进行实例化。</p>
+<p>如果模板类的声明和定义分别放在头文件和源文件中。当实例化的时候，只包含头文件会发证链接错误。</p>
+<p>原因是模板类的实例化要分成两个步骤，模板的特例化和特例的实例化。</p>
+<p>编译器在编译阶段，由于没有定义，所以编译器不能生成具体的模板特例，但是这并不会报错误，编译器将把问题抛给链接器来做。在编译源文件的时候，程序找不到该模板的特例，只是有模板而已，所以无法生成对象。所以会发生错误。</p>
 ]]></content>
       <categories>
         <category>编程语言</category>
