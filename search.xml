@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>模板</title>
-    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
-<span id="more"></span>
-
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>模板</category>
-      </categories>
-  </entry>
-  <entry>
     <title>cpp-header</title>
     <url>/2022/10/04/cpp-header/</url>
     <content><![CDATA[<p>由于在上机考试的时候编辑器的原因，在这里整理了一些常用函数以及需要的头文件</p>
@@ -77,6 +62,21 @@
 ]]></content>
       <categories>
         <category>编程语言</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>模板</title>
+    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
+<span id="more"></span>
+
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>模板</category>
       </categories>
   </entry>
 </search>
