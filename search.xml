@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>模板</title>
+    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
+<span id="more"></span>
+
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>模板</category>
+      </categories>
+  </entry>
+  <entry>
     <title>cpp-header</title>
     <url>/2022/10/04/cpp-header/</url>
     <content><![CDATA[<p>由于在上机考试的时候编辑器的原因，在这里整理了一些常用函数以及需要的头文件</p>
@@ -23,7 +38,14 @@
 
 <p>在区间内填充某一个值。同样<strong>适用所有类型数组，容器</strong>。</p>
 <h4 id="查找某值出现的次数：count"><a href="#查找某值出现的次数：count" class="headerlink" title="查找某值出现的次数：count()"></a>查找某值出现的次数：count()</h4><p>count在string, map, set中可以用，在vector中不可以用</p>
-<h4 id="求最大公因数：gcd"><a href="#求最大公因数：gcd" class="headerlink" title="求最大公因数：gcd()"></a>求最大公因数：gcd()</h4><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3>]]></content>
+<h4 id="求最大公因数：gcd"><a href="#求最大公因数：gcd" class="headerlink" title="求最大公因数：gcd()"></a>求最大公因数：gcd()</h4><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><h4 id="stoi-stol-stoll"><a href="#stoi-stol-stoll" class="headerlink" title="stoi(),stol(),stoll()"></a>stoi(),stol(),stoll()</h4><p>converts a string to a signed integer </p>
+<h4 id="stof-stod"><a href="#stof-stod" class="headerlink" title="stof(),stod()"></a>stof(),stod()</h4><p>converts a string to a floating point value </p>
+<h4 id="to-string"><a href="#to-string" class="headerlink" title="to_string()"></a>to_string()</h4><p>converts an integral or floating point value to string</p>
+<h4 id="find-find-first-of"><a href="#find-find-first-of" class="headerlink" title="find(), find_first_of()"></a>find(), find_first_of()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">size_type <span class="hljs-title">find</span><span class="hljs-params">( <span class="hljs-type">const</span> basic_string&amp; str, size_type pos = <span class="hljs-number">0</span> )</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function">size_type <span class="hljs-title">find_first_of</span><span class="hljs-params">( <span class="hljs-type">const</span> basic_string&amp; str, size_type pos = <span class="hljs-number">0</span> )</span> <span class="hljs-type">const</span></span>;<br><br><span class="hljs-comment">//返回值：如果查找成功，则返回查找到的子字符串第一个字符的位置；否则返回string::npos</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="erase"><a href="#erase" class="headerlink" title="erase()"></a>erase()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">iterator <span class="hljs-title">erase</span><span class="hljs-params">(iterator p)</span></span>; <span class="hljs-comment">//删除p指向的字符</span><br><span class="hljs-function">string&amp; <span class="hljs-title">erase</span><span class="hljs-params">(<span class="hljs-type">size_t</span> pos=<span class="hljs-number">0</span>, <span class="hljs-type">size_t</span> len = npos)</span> <span class="hljs-comment">//删除从pos开始，长度为len的子串</span></span><br></code></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>编程语言</category>
       </categories>
@@ -57,26 +79,18 @@
 <h4 id="lower-bound-amp-amp-upper-bound"><a href="#lower-bound-amp-amp-upper-bound" class="headerlink" title="lower_bound &amp;&amp; upper_bound"></a>lower_bound &amp;&amp; upper_bound</h4><p>lower_bound( )和upper_bound( )都是利用二分查找的方法在一个排好序的数组中进行查找元素的方法。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//在从小到大的排序数组中,以vector&lt;int&gt; nums为例子</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br>vector&lt;<span class="hljs-type">int</span>&gt; nums;<br><span class="hljs-type">int</span> idx = <span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target) - nums.<span class="hljs-built_in">begin</span>();<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> idx = <span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target) - nums.<span class="hljs-built_in">begin</span>();<br><br><span class="hljs-comment">//在从大到小的排序数组中，重载lower_bound()和upper_bound()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target, <span class="hljs-built_in">greater</span>&lt;<span class="hljs-type">int</span>&gt;());<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target, <span class="hljs-built_in">greater</span>&lt;<span class="hljs-type">int</span>&gt;());<br></code></pre></td></tr></table></figure>
 
-<h3 id="I-x2F-0技巧"><a href="#I-x2F-0技巧" class="headerlink" title="I&#x2F;0技巧"></a>I&#x2F;0技巧</h3><h4 id="能读入空格和回车符的输入方式"><a href="#能读入空格和回车符的输入方式" class="headerlink" title="能读入空格和回车符的输入方式"></a>能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">string s;<br><span class="hljs-type">char</span> c;<br><span class="hljs-keyword">while</span> (cin.<span class="hljs-built_in">peek</span>() != EOF) &#123;<br>    c = cin.<span class="hljs-built_in">get</span>();<br>    s += c;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="I-x2F-0技巧"><a href="#I-x2F-0技巧" class="headerlink" title="I&#x2F;0技巧"></a>I&#x2F;0技巧</h3><h4 id="能读入空格和回车符的输入方式"><a href="#能读入空格和回车符的输入方式" class="headerlink" title="能读入空格和回车符的输入方式"></a>能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">string s;<br><span class="hljs-type">char</span> c;<br><span class="hljs-keyword">while</span> (cin.<span class="hljs-built_in">get</span>()) &#123;<br>    s += c;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读入一个整数之后再读入行"><a href="#读入一个整数之后再读入行" class="headerlink" title="读入一个整数之后再读入行"></a>读入一个整数之后再读入行</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> n;<br>cin &gt;&gt; n;<br>cin &gt;&gt; ws;<br>string t;<br><span class="hljs-built_in">getline</span>(cin, t);<br></code></pre></td></tr></table></figure>
+
+<h4 id="输入未知个数的数字"><a href="#输入未知个数的数字" class="headerlink" title="输入未知个数的数字"></a>输入未知个数的数字</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> n;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; n) &#123;<br>	<span class="hljs-built_in">func</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="输入未知个数的字符和字符串"><a href="#输入未知个数的字符和字符串" class="headerlink" title="输入未知个数的字符和字符串"></a>输入未知个数的字符和字符串</h4><p>此处以字符串为例子，cin会跳过空格以及换行符</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">string s;<br>vector&lt;string&gt; v;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; s) &#123;<br>    v.<span class="hljs-built_in">push_back</span>(s);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
         <category>编程语言</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>模板</title>
-    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
-<span id="more"></span>
-
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>模板</category>
       </categories>
   </entry>
 </search>
