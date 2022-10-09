@@ -4,6 +4,101 @@
   
   
   <entry>
+    <title>Double-Pointer</title>
+    <link href="/2022/10/09/Double-Pointer/"/>
+    <url>/2022/10/09/Double-Pointer/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Other-Algorithm</title>
+    <link href="/2022/10/09/Other-Algorithm/"/>
+    <url>/2022/10/09/Other-Algorithm/</url>
+    
+    <content type="html"><![CDATA[<p>快速幂</p><span id="more"></span><h3 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h3><h4 id="L50"><a href="#L50" class="headerlink" title="L50"></a>L50</h4><p>实现pow(x, n) ，即计算 <code>x</code> 的整数 <code>n</code> 次幂函数。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">myMul</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">long</span> <span class="hljs-type">long</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;<br>        <span class="hljs-type">double</span> y = <span class="hljs-built_in">myMul</span>(x, n / <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? y * y : y * y * x;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> exp = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>) n;<br>        <span class="hljs-comment">//考虑到n是负数的情况</span><br>        <span class="hljs-keyword">return</span> exp &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">myMul</span>(x, exp) : <span class="hljs-number">1.0</span> / <span class="hljs-built_in">myMul</span>(x, -exp);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SlidingWindow</title>
+    <link href="/2022/10/09/SlidingWindow/"/>
+    <url>/2022/10/09/SlidingWindow/</url>
+    
+    <content type="html"><![CDATA[<h3 id="SlidingWindow"><a href="#SlidingWindow" class="headerlink" title="SlidingWindow"></a>SlidingWindow</h3><span id="more"></span><h4 id="L3"><a href="#L3" class="headerlink" title="L3"></a>L3</h4><p><code>HashMap</code></p><p>给定一个字符串<code>s</code>，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>, temp = <span class="hljs-number">0</span>;<br>        unordered_map&lt;<span class="hljs-type">char</span>, <span class="hljs-type">int</span>&gt; hashmap;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (hashmap.<span class="hljs-built_in">find</span>(s[i]) == hashmap.<span class="hljs-built_in">end</span>()) &#123;<br>                temp++;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                temp = <span class="hljs-built_in">min</span>(temp + <span class="hljs-number">1</span>, i - hashmap[s[i]]);<br>            &#125;<br>            hashmap[s[i]] = i;<br>            res = <span class="hljs-built_in">max</span>(res, temp);<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Dp</title>
+    <link href="/2022/10/09/Dp/"/>
+    <url>/2022/10/09/Dp/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Dp"><a href="#Dp" class="headerlink" title="Dp"></a>Dp</h3><span id="more"></span><h4 id="L32"><a href="#L32" class="headerlink" title="L32"></a>L32</h4><p>给你一个只包含 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestValidParentheses</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <br>        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> dp[n];<br>        <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(dp));<span class="hljs-comment">//dp[i] means the longest valid bracket list which ends with index of i</span><br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;)&#x27;</span>) &#123;<br>                <span class="hljs-keyword">if</span> (s[i<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>                    dp[i] += (i &gt;= <span class="hljs-number">2</span> ? dp[i<span class="hljs-number">-2</span>] : <span class="hljs-number">0</span>) + <span class="hljs-number">2</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; s[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span>] == <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>                        <span class="hljs-keyword">if</span> (i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                            dp[i] = (dp[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span>] ? dp[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span>] : <span class="hljs-number">0</span>) + dp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">2</span>;<br>                        &#125; <span class="hljs-keyword">else</span> &#123;<br>                            dp[i] = dp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">2</span>;<br>                        &#125;<br>                    &#125;<br>                &#125;<br>            &#125; <br>            ans = <span class="hljs-built_in">max</span>(ans, dp[i]);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id="L198"><a href="#L198" class="headerlink" title="L198"></a>L198</h4><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p><p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> dp[n];<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];<br>        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>], nums[<span class="hljs-number">1</span>]);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt; n; i++) &#123;<br>            dp[i] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-2</span>] + nums[i]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>];<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><p>这道题是非常经典的dp入门题，对于相邻状态的处理有非常好的理解作用</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Bfs/Dfs</title>
+    <link href="/2022/10/09/Bfs:Dfs/"/>
+    <url>/2022/10/09/Bfs:Dfs/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Bfs-x2F-Dfs"><a href="#Bfs-x2F-Dfs" class="headerlink" title="Bfs&#x2F;Dfs"></a>Bfs&#x2F;Dfs</h3><span id="more"></span><h4 id="L200"><a href="#L200" class="headerlink" title="L200"></a>L200</h4><p>给你一个由 ‘1’（陆地）和 ‘0’（水）组成的的二维网格，请你计算网格中岛屿的数量。</p><p>岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。</p><p>此外，你可以假设该网格的四条边均被水包围。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">int</span> dy[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-type">int</span> dx[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>&#125;;<br>    <span class="hljs-type">int</span> m = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">outOfRange</span><span class="hljs-params">(<span class="hljs-type">int</span> y, <span class="hljs-type">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> y &lt; <span class="hljs-number">0</span> || y &gt;= m || x &lt; <span class="hljs-number">0</span> || x &gt;= n;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> x)</span> </span>&#123;<br>        grid[y][x] = <span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>            <span class="hljs-type">int</span> ty = y + dy[i];<br>            <span class="hljs-type">int</span> tx = x + dx[i];<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">outOfRange</span>(ty, tx) &amp;&amp; grid[ty][tx] == <span class="hljs-string">&#x27;1&#x27;</span>) &#123;<br>                <span class="hljs-built_in">dfs</span>(grid, ty, tx);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid)</span> </span>&#123;<br>        m = grid.<span class="hljs-built_in">size</span>();<br>        n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                <span class="hljs-keyword">if</span> (grid[i][j] == <span class="hljs-string">&#x27;1&#x27;</span>) &#123;<br>                    ans++;<br>                    <span class="hljs-built_in">dfs</span>(grid, i, j);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>模板</title>
     <link href="/2022/10/05/%E6%A8%A1%E6%9D%BF/"/>
     <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>

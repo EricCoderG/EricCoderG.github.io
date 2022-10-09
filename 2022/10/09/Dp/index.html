@@ -16,21 +16,21 @@
   <meta name="author" content="Ruilin Geng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="许多时候有一些常见的代码模板一直在复用，自己整理一下">
+    <meta name="description" content="Dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模板">
-<meta property="og:url" content="https://grl2939.top/2022/10/05/%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:title" content="Dp">
+<meta property="og:url" content="https://grl2939.top/2022/10/09/Dp/index.html">
 <meta property="og:site_name" content="GRL&#39;s Blog">
-<meta property="og:description" content="许多时候有一些常见的代码模板一直在复用，自己整理一下">
+<meta property="og:description" content="Dp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-05T09:40:22.000Z">
-<meta property="article:modified_time" content="2022-10-05T10:39:57.768Z">
+<meta property="article:published_time" content="2022-10-09T10:47:10.000Z">
+<meta property="article:modified_time" content="2022-10-09T11:13:24.367Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>模板 - GRL&#39;s Blog</title>
+  <title>Dp - GRL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="模板"></span>
+            <span id="subtitle" data-typed-text="Dp"></span>
           
         </div>
 
@@ -223,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-05 17:40" pubdate>
-          2022年10月5日 下午
+        <time datetime="2022-10-09 18:47" pubdate>
+          2022年10月9日 晚上
         </time>
       </span>
     
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          534 字
+          1.1k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          5 分钟
+          10 分钟
         
       </span>
     
@@ -284,18 +284,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">模板</h1>
+            <h1 style="display: none">Dp</h1>
             
             
               <div class="markdown-body">
                 
-                <p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
-<span id="more"></span>
+                <h3 id="Dp"><a href="#Dp" class="headerlink" title="Dp"></a>Dp</h3><span id="more"></span>
 
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="L32"><a href="#L32" class="headerlink" title="L32"></a>L32</h4><p>给你一个只包含 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestValidParentheses</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <br>        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> dp[n];<br>        <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(dp));<span class="hljs-comment">//dp[i] means the longest valid bracket list which ends with index of i</span><br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;)&#x27;</span>) &#123;<br>                <span class="hljs-keyword">if</span> (s[i<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>                    dp[i] += (i &gt;= <span class="hljs-number">2</span> ? dp[i<span class="hljs-number">-2</span>] : <span class="hljs-number">0</span>) + <span class="hljs-number">2</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; s[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span>] == <span class="hljs-string">&#x27;(&#x27;</span>) &#123;<br>                        <span class="hljs-keyword">if</span> (i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span> &gt;= <span class="hljs-number">0</span>) &#123;<br>                            dp[i] = (dp[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span>] ? dp[i - dp[i<span class="hljs-number">-1</span>] - <span class="hljs-number">2</span>] : <span class="hljs-number">0</span>) + dp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">2</span>;<br>                        &#125; <span class="hljs-keyword">else</span> &#123;<br>                            dp[i] = dp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">2</span>;<br>                        &#125;<br>                    &#125;<br>                &#125;<br>            &#125; <br>            ans = <span class="hljs-built_in">max</span>(ans, dp[i]);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+
+
+<h4 id="L198"><a href="#L198" class="headerlink" title="L198"></a>L198</h4><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> dp[n];<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];<br>        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>], nums[<span class="hljs-number">1</span>]);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt; n; i++) &#123;<br>            dp[i] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-2</span>] + nums[i]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>];<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>这道题是非常经典的dp入门题，对于相邻状态的处理有非常好的理解作用</p>
 
                 
               </div>
@@ -314,7 +321,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="category-chain-item">模板</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
   
   
 
@@ -334,8 +341,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>模板</div>
-      <div>https://grl2939.top/2022/10/05/模板/</div>
+      <div>Dp</div>
+      <div>https://grl2939.top/2022/10/09/Dp/</div>
     </div>
     <div class="license-meta">
       
@@ -347,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月5日</div>
+          <div>2022年10月9日</div>
         </div>
       
       
@@ -379,9 +386,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/09/Bfs:Dfs/" title="Bfs/Dfs">
+                      <a href="/2022/10/09/SlidingWindow/" title="SlidingWindow">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Bfs/Dfs</span>
+                        <span class="hidden-mobile">SlidingWindow</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -389,8 +396,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/04/cpp-header/" title="cpp-header">
-                        <span class="hidden-mobile">cpp-header</span>
+                      <a href="/2022/10/09/Bfs:Dfs/" title="Bfs/Dfs">
+                        <span class="hidden-mobile">Bfs/Dfs</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
