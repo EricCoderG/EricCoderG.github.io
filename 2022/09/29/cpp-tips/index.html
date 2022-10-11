@@ -24,7 +24,7 @@
 <meta property="og:description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-29T13:55:46.000Z">
-<meta property="article:modified_time" content="2022-10-05T12:57:23.829Z">
+<meta property="article:modified_time" content="2022-10-11T02:47:39.701Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.5k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          12 分钟
+          13 分钟
         
       </span>
     
@@ -298,6 +298,8 @@
 
 <h4 id="lower-bound-amp-amp-upper-bound"><a href="#lower-bound-amp-amp-upper-bound" class="headerlink" title="lower_bound &amp;&amp; upper_bound"></a>lower_bound &amp;&amp; upper_bound</h4><p>lower_bound( )和upper_bound( )都是利用二分查找的方法在一个排好序的数组中进行查找元素的方法。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//在从小到大的排序数组中,以vector&lt;int&gt; nums为例子</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br>vector&lt;<span class="hljs-type">int</span>&gt; nums;<br><span class="hljs-type">int</span> idx = <span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target) - nums.<span class="hljs-built_in">begin</span>();<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> idx = <span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target) - nums.<span class="hljs-built_in">begin</span>();<br><br><span class="hljs-comment">//在从大到小的排序数组中，重载lower_bound()和upper_bound()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target, <span class="hljs-built_in">greater</span>&lt;<span class="hljs-type">int</span>&gt;());<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</span><br><span class="hljs-comment">*/</span><br><span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), target, <span class="hljs-built_in">greater</span>&lt;<span class="hljs-type">int</span>&gt;());<br></code></pre></td></tr></table></figure>
+
+<h4 id="循环中的格式化输出"><a href="#循环中的格式化输出" class="headerlink" title="循环中的格式化输出"></a>循环中的格式化输出</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>		cout &lt;&lt; mat[i][j] &lt;&lt; (j &lt; n - <span class="hljs-number">1</span> ? <span class="hljs-string">&quot; &quot;</span> : <span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="I-x2F-0技巧"><a href="#I-x2F-0技巧" class="headerlink" title="I&#x2F;0技巧"></a>I&#x2F;0技巧</h3><h4 id="能读入空格和回车符的输入方式"><a href="#能读入空格和回车符的输入方式" class="headerlink" title="能读入空格和回车符的输入方式"></a>能读入空格和回车符的输入方式</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++">string s;<br><span class="hljs-type">char</span> c;<br><span class="hljs-keyword">while</span> (cin.<span class="hljs-built_in">get</span>()) &#123;<br>    s += c;<br>&#125;<br></code></pre></td></tr></table></figure>
 
