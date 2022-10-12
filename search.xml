@@ -3,10 +3,7 @@
   <entry>
     <title>Greedy</title>
     <url>/2022/10/12/Greedy/</url>
-    <content><![CDATA[<p>Greedy</p>
-<span id="more"></span>
-
-
+    <content><![CDATA[<h3 id="Greedy"><a href="#Greedy" class="headerlink" title="Greedy"></a>Greedy</h3><span id="more"></span>
 
 <h4 id="最多重叠区间的区间数量"><a href="#最多重叠区间的区间数量" class="headerlink" title="最多重叠区间的区间数量"></a>最多重叠区间的区间数量</h4><p>给定一个数字m，和m组区间</p>
 <p>输出具有最多重叠区间的区间数量</p>
