@@ -2,8 +2,13 @@
 <search>
   <entry>
     <title>greedy</title>
-    <url>/2022/10/12/greedy/</url>
-    <content><![CDATA[<h4 id="最多重叠区间的区间数量"><a href="#最多重叠区间的区间数量" class="headerlink" title="最多重叠区间的区间数量"></a>最多重叠区间的区间数量</h4><p>给定一个数字m，和m组区间</p>
+    <url>/2022/10/12/Greedy/</url>
+    <content><![CDATA[<p>Greedy</p>
+<span id="more"></span>
+
+
+
+<h4 id="最多重叠区间的区间数量"><a href="#最多重叠区间的区间数量" class="headerlink" title="最多重叠区间的区间数量"></a>最多重叠区间的区间数量</h4><p>给定一个数字m，和m组区间</p>
 <p>输出具有最多重叠区间的区间数量</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-type">int</span> m;<br>    cin &gt;&gt; m;<br>    vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">v</span>(m);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)  cin &gt;&gt; v[i].first &gt;&gt; v[i].second;<br>    <span class="hljs-keyword">auto</span> cmp = [](pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; p1, pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; p2) &#123;<br>        <span class="hljs-keyword">return</span> p1.second &lt; p2.second;<br>    &#125;;<br>    <span class="hljs-built_in">sort</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), cmp);<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>, cur = v[<span class="hljs-number">0</span>].second, cnt = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> p : v) &#123;<br>        <span class="hljs-keyword">if</span> (p.first &gt; cur) &#123; <span class="hljs-comment">//此处是闭区间的情况，如果是开区间那么则是&gt;=</span><br>            cur = p.second;<br>            ans = <span class="hljs-built_in">max</span>(ans,cnt);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            cnt++;<br>        &#125;<br>    &#125;<br>    ans = <span class="hljs-built_in">max</span>(ans, cnt);<br><br>    cout &lt;&lt; ans;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
 
