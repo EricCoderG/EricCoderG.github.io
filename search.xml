@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>COA组件</title>
+    <url>/2022/10/13/COA%E7%BB%84%E4%BB%B6/</url>
+    <content><![CDATA[<p>这里整理了在COA上机过程中自己喜欢写的小组件</p>
+<span id="more"></span>
+
+<h3 id="算数部分"><a href="#算数部分" class="headerlink" title="算数部分"></a>算数部分</h3><h4 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">signExtension</span><span class="hljs-params">(String oprand, <span class="hljs-type">int</span> length)</span> &#123;<br>	<span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> length - oprand.length();<br>	<span class="hljs-type">char</span> <span class="hljs-variable">sign</span> <span class="hljs-operator">=</span> oprand.charAt(<span class="hljs-number">0</span>);<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(oprand);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		res.insert(<span class="hljs-number">0</span>, sign);<br>	&#125;<br>	<span class="hljs-keyword">return</span> res.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="左移"><a href="#左移" class="headerlink" title="左移"></a>左移</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">leftShift</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(s.substring(n));<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>		res.append(<span class="hljs-number">0</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> res.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="adder"><a href="#adder" class="headerlink" title="adder"></a>adder</h4><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//增加参数carry0,当加法时参数为0，减法时参数为1(按位取反再+1)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">adder</span><span class="hljs-params">(String add1, String add2, <span class="hljs-type">int</span> carry0, <span class="hljs-type">int</span> length)</span> &#123;<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>	<span class="hljs-type">int</span> x, y, carry = carry0;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<span class="hljs-comment">//顺序是从低位到高位</span><br>		x = add1.charAt(i) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		y = add2.charAt(i) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		ans.append(x ^ y ^ carry);<br>		carry = x &amp; carry | y &amp; carry | x &amp; y;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans.reverse().toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>模板</category>
+      </categories>
+  </entry>
+  <entry>
     <title>贪心</title>
     <url>/2022/10/12/%E8%B4%AA%E5%BF%83/</url>
     <content><![CDATA[<h3 id="Greedy"><a href="#Greedy" class="headerlink" title="Greedy"></a>Greedy</h3><span id="more"></span>
@@ -192,7 +209,7 @@
 
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2>]]></content>
+]]></content>
       <categories>
         <category>模板</category>
       </categories>

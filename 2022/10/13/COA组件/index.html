@@ -16,21 +16,21 @@
   <meta name="author" content="Ruilin Geng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="许多时候有一些常见的代码模板一直在复用，自己整理一下">
+    <meta name="description" content="这里整理了在COA上机过程中自己喜欢写的小组件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模板">
-<meta property="og:url" content="https://grl2939.top/2022/10/05/%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:title" content="COA组件">
+<meta property="og:url" content="https://grl2939.top/2022/10/13/COA%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="GRL&#39;s Blog">
-<meta property="og:description" content="许多时候有一些常见的代码模板一直在复用，自己整理一下">
+<meta property="og:description" content="这里整理了在COA上机过程中自己喜欢写的小组件">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-05T09:40:22.000Z">
-<meta property="article:modified_time" content="2022-10-13T12:54:03.734Z">
+<meta property="article:published_time" content="2022-10-13T12:54:36.000Z">
+<meta property="article:modified_time" content="2022-10-13T12:59:27.899Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>模板 - GRL&#39;s Blog</title>
+  <title>COA组件 - GRL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="模板"></span>
+            <span id="subtitle" data-typed-text="COA组件"></span>
           
         </div>
 
@@ -223,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-05 17:40" pubdate>
-          2022年10月5日 下午
+        <time datetime="2022-10-13 20:54" pubdate>
+          2022年10月13日 晚上
         </time>
       </span>
     
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          382 字
+          842 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          4 分钟
+          8 分钟
         
       </span>
     
@@ -284,15 +284,19 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">模板</h1>
+            <h1 style="display: none">COA组件</h1>
             
             
               <div class="markdown-body">
                 
-                <p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
+                <p>这里整理了在COA上机过程中自己喜欢写的小组件</p>
 <span id="more"></span>
 
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="算数部分"><a href="#算数部分" class="headerlink" title="算数部分"></a>算数部分</h3><h4 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">signExtension</span><span class="hljs-params">(String oprand, <span class="hljs-type">int</span> length)</span> &#123;<br>	<span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> length - oprand.length();<br>	<span class="hljs-type">char</span> <span class="hljs-variable">sign</span> <span class="hljs-operator">=</span> oprand.charAt(<span class="hljs-number">0</span>);<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(oprand);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		res.insert(<span class="hljs-number">0</span>, sign);<br>	&#125;<br>	<span class="hljs-keyword">return</span> res.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="左移"><a href="#左移" class="headerlink" title="左移"></a>左移</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">leftShift</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(s.substring(n));<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>		res.append(<span class="hljs-number">0</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> res.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="adder"><a href="#adder" class="headerlink" title="adder"></a>adder</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//增加参数carry0,当加法时参数为0，减法时参数为1(按位取反再+1)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">adder</span><span class="hljs-params">(String add1, String add2, <span class="hljs-type">int</span> carry0, <span class="hljs-type">int</span> length)</span> &#123;<br>	<span class="hljs-type">StringBuilder</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>	<span class="hljs-type">int</span> x, y, carry = carry0;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<span class="hljs-comment">//顺序是从低位到高位</span><br>		x = add1.charAt(i) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		y = add2.charAt(i) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		ans.append(x ^ y ^ carry);<br>		carry = x &amp; carry | y &amp; carry | x &amp; y;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans.reverse().toString();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -332,8 +336,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>模板</div>
-      <div>https://grl2939.top/2022/10/05/模板/</div>
+      <div>COA组件</div>
+      <div>https://grl2939.top/2022/10/13/COA组件/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +349,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月5日</div>
+          <div>2022年10月13日</div>
         </div>
       
       
@@ -377,18 +381,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/09/Bfs:Dfs/" title="Bfs/Dfs">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Bfs/Dfs</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/04/cpp-header/" title="cpp-header">
-                        <span class="hidden-mobile">cpp-header</span>
+                      <a href="/2022/10/12/%E8%B4%AA%E5%BF%83/" title="贪心">
+                        <span class="hidden-mobile">贪心</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
