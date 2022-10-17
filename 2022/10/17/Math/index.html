@@ -16,21 +16,21 @@
   <meta name="author" content="Ruilin Geng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Prefix-Add">
+    <meta name="description" content="Math">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prefix-Add">
-<meta property="og:url" content="https://grl2939.top/2022/10/15/Prefix-Add/index.html">
+<meta property="og:title" content="Math">
+<meta property="og:url" content="https://grl2939.top/2022/10/17/Math/index.html">
 <meta property="og:site_name" content="GRL&#39;s Blog">
-<meta property="og:description" content="Prefix-Add">
+<meta property="og:description" content="Math">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-15T04:53:14.000Z">
-<meta property="article:modified_time" content="2022-10-16T13:03:56.706Z">
+<meta property="article:published_time" content="2022-10-17T07:30:38.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:32:06.918Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Prefix-Add - GRL&#39;s Blog</title>
+  <title>Math - GRL&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Prefix-Add"></span>
+            <span id="subtitle" data-typed-text="Math"></span>
           
         </div>
 
@@ -223,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-15 12:53" pubdate>
-          2022年10月15日 下午
+        <time datetime="2022-10-17 15:30" pubdate>
+          2022年10月17日 下午
         </time>
       </span>
     
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          537 字
+          506 字
         
       </span>
     
@@ -284,15 +284,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Prefix-Add</h1>
+            <h1 style="display: none">Math</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="Prefix-Add"><a href="#Prefix-Add" class="headerlink" title="Prefix-Add"></a>Prefix-Add</h3><span id="more"></span>
+                <h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><span id="more"></span>
 
-<h4 id="最大和子矩阵"><a href="#最大和子矩阵" class="headerlink" title="最大和子矩阵"></a>最大和子矩阵</h4><p>给定一个n * m的矩阵，找出其中和最大的子矩阵</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, m;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <span class="hljs-type">int</span> dp[n+<span class="hljs-number">1</span>][m+<span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span> (dp));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;<br>            <span class="hljs-type">int</span> num;<br>            cin &gt;&gt; num;<br>            dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + num;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//dp[i][j]代表在第j列中从第1行到第i行元素的和</span><br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i; j &lt;= n; j++)&#123;<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= m; k++)&#123;<br>                sum = sum + (dp[j][k] - dp[i<span class="hljs-number">-1</span>][k]);<br>                <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">0</span>) sum = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">if</span>(sum &gt; ans) ans = sum;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; ans;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="快乐数"><a href="#快乐数" class="headerlink" title="快乐数"></a>快乐数</h4><p><code>Hashset</code></p>
+<p>编写一个算法来判断一个数 <code>n</code> 是不是快乐数。</p>
+<p><strong>「快乐数」</strong> 定义为：</p>
+<ul>
+<li>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。</li>
+<li>然后重复这个过程直到这个数变为 1，也可能是 <strong>无限循环</strong> 但始终变不到 1。</li>
+<li>如果这个过程 <strong>结果为</strong> 1，那么这个数就是快乐数。</li>
+</ul>
+<p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getNum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;<br>            ans += (n % <span class="hljs-number">10</span>) * (n % <span class="hljs-number">10</span>);<br>            n /= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isHappy</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        unordered_set&lt;<span class="hljs-type">int</span>&gt; s;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-type">int</span> sum = <span class="hljs-built_in">getNum</span>(n);<br>            <span class="hljs-keyword">if</span> (sum == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-comment">//说明这个数字已经出现过了</span><br>            <span class="hljs-keyword">if</span> (s.<span class="hljs-built_in">find</span>(sum) != s.<span class="hljs-built_in">end</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            s.<span class="hljs-built_in">insert</span>(sum);<br>            n = sum;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -332,8 +340,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Prefix-Add</div>
-      <div>https://grl2939.top/2022/10/15/Prefix-Add/</div>
+      <div>Math</div>
+      <div>https://grl2939.top/2022/10/17/Math/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +353,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月15日</div>
+          <div>2022年10月17日</div>
         </div>
       
       
@@ -377,18 +385,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/17/Math/" title="Math">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Math</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/13/COA%E7%BB%84%E4%BB%B6/" title="COA组件">
-                        <span class="hidden-mobile">COA组件</span>
+                      <a href="/2022/10/15/Prefix-Add/" title="Prefix-Add">
+                        <span class="hidden-mobile">Prefix-Add</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
