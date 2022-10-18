@@ -127,22 +127,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Double-Pointer</title>
-    <url>/2022/10/09/Double-Pointer/</url>
-    <content><![CDATA[<h3 id="Double-Pointer"><a href="#Double-Pointer" class="headerlink" title="Double Pointer"></a>Double Pointer</h3><span id="more"></span>
-
-<h4 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h4><p><code>sort</code></p>
-<p>给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i !&#x3D; j、i !&#x3D; k 且 j !&#x3D; k ，同时还满足 nums[i] + nums[j] + nums[k] &#x3D;&#x3D; 0 。请</p>
-<p>你返回所有和为 0 且不重复的三元组。</p>
-<p>注意：答案中不可以包含重复的三元组。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> i,j,k;<br>        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">2</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (nums[i] &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>            j = i + <span class="hljs-number">1</span>;<br>            k = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (j &lt; k) &#123;<br>                <span class="hljs-type">int</span> temp = nums[i] + nums[j] + nums[k];<br>                <span class="hljs-keyword">if</span> (temp &lt; <span class="hljs-number">0</span>) &#123;<br>                    j++;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (temp &gt; <span class="hljs-number">0</span>) &#123;<br>                    k--;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    res.<span class="hljs-built_in">push_back</span>(&#123;nums[i], nums[j], nums[k]&#125;);<br>                    j++;<br>                    k--;<br>                    <span class="hljs-keyword">while</span> (j &lt; k &amp;&amp; nums[j] == nums[j<span class="hljs-number">-1</span>]) j++;<br>                    <span class="hljs-keyword">while</span> (j &lt; k &amp;&amp; nums[k] == nums[k+<span class="hljs-number">1</span>]) k--;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Dp</title>
     <url>/2022/10/09/Dp/</url>
     <content><![CDATA[<h3 id="Dp"><a href="#Dp" class="headerlink" title="Dp"></a>Dp</h3><span id="more"></span>
@@ -173,6 +157,22 @@
 <h4 id="环形子数组的最大和-Kanade-算法"><a href="#环形子数组的最大和-Kanade-算法" class="headerlink" title="环形子数组的最大和(Kanade 算法)"></a>环形子数组的最大和(Kanade 算法)</h4><img src="/2022/10/09/Dp/L918.png" class>
 
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxSubarraySumCircular</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; A)</span> </span>&#123;<br>    <span class="hljs-comment">//统一注释，total为数组的总和，maxSum为最大子数组和，minSum为最小子数组和，curMax为包含当前元素的最大子数组和，curMin为包含当前元素的最小子数组和</span><br>        <span class="hljs-type">int</span> total = <span class="hljs-number">0</span>, maxSum = A[<span class="hljs-number">0</span>], curMax = <span class="hljs-number">0</span>, minSum = A[<span class="hljs-number">0</span>], curMin = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> a : A) &#123;<br>            curMax = <span class="hljs-built_in">max</span>(curMax + a, a);<br>            maxSum = <span class="hljs-built_in">max</span>(maxSum, curMax);<br>            curMin = <span class="hljs-built_in">min</span>(curMin + a, a);<br>            minSum = <span class="hljs-built_in">min</span>(minSum, curMin);<br>            total += a;<br>        &#125;<br>        <span class="hljs-keyword">return</span> maxSum &gt; <span class="hljs-number">0</span> ? <span class="hljs-built_in">max</span>(maxSum, total - minSum) : maxSum;<br>        <span class="hljs-comment">//如果元素都是非正的话,要分类讨论</span><br>    &#125;<br><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Double-Pointer</title>
+    <url>/2022/10/09/Double-Pointer/</url>
+    <content><![CDATA[<h3 id="Double-Pointer"><a href="#Double-Pointer" class="headerlink" title="Double Pointer"></a>Double Pointer</h3><span id="more"></span>
+
+<h4 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h4><p><code>sort</code></p>
+<p>给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i !&#x3D; j、i !&#x3D; k 且 j !&#x3D; k ，同时还满足 nums[i] + nums[j] + nums[k] &#x3D;&#x3D; 0 。请</p>
+<p>你返回所有和为 0 且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> i,j,k;<br>        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">2</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (nums[i] &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>            j = i + <span class="hljs-number">1</span>;<br>            k = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (j &lt; k) &#123;<br>                <span class="hljs-type">int</span> temp = nums[i] + nums[j] + nums[k];<br>                <span class="hljs-keyword">if</span> (temp &lt; <span class="hljs-number">0</span>) &#123;<br>                    j++;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (temp &gt; <span class="hljs-number">0</span>) &#123;<br>                    k--;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    res.<span class="hljs-built_in">push_back</span>(&#123;nums[i], nums[j], nums[k]&#125;);<br>                    j++;<br>                    k--;<br>                    <span class="hljs-keyword">while</span> (j &lt; k &amp;&amp; nums[j] == nums[j<span class="hljs-number">-1</span>]) j++;<br>                    <span class="hljs-keyword">while</span> (j &lt; k &amp;&amp; nums[k] == nums[k+<span class="hljs-number">1</span>]) k--;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -262,9 +262,7 @@
     <content><![CDATA[<p>由于在上机考试的时候编辑器的原因，在这里整理了一些常用函数以及需要的头文件</p>
 <span id="more"></span>
 
-<h3 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">memset</span><span class="hljs-params">(<span class="hljs-type">void</span> *s, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> n)</span></span>; <br></code></pre></td></tr></table></figure>
-
-<h3 id="algorithm-头文件"><a href="#algorithm-头文件" class="headerlink" title="algorithm 头文件"></a>algorithm 头文件</h3><h4 id="max-min-abs"><a href="#max-min-abs" class="headerlink" title="max(),min(),abs()"></a>max(),min(),abs()</h4><p><code>abs()</code>函数只能用于求整型变量的绝对值，而<code>#include&lt;cmath&gt;</code>中的<code>fabs()</code>函数还可用于求浮点型变量的绝对值，不要搞混~</p>
+<h3 id="include"><a href="#include" class="headerlink" title="#include  "></a>#include  <algorithm></algorithm></h3><h4 id="max-min-abs"><a href="#max-min-abs" class="headerlink" title="max(),min(),abs()"></a>max(),min(),abs()</h4><p><code>abs()</code>函数只能用于求整型变量的绝对值，而<code>#include&lt;cmath&gt;</code>中的<code>fabs()</code>函数还可用于求浮点型变量的绝对值，不要搞混~</p>
 <h4 id="交换函数：swap"><a href="#交换函数：swap" class="headerlink" title="交换函数：swap()"></a>交换函数：swap()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">( T&amp; a, T&amp; b )</span></span>;<br></code></pre></td></tr></table></figure>
 
 <h4 id="翻转函数：reverse"><a href="#翻转函数：reverse" class="headerlink" title="翻转函数：reverse()"></a>翻转函数：reverse()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">reverse</span><span class="hljs-params">(BidirIt first, BidirIt last )</span></span>;<br></code></pre></td></tr></table></figure>
@@ -279,7 +277,10 @@
 
 <p>在区间内填充某一个值。同样<strong>适用所有类型数组，容器</strong>。</p>
 <h4 id="查找某值出现的次数：count"><a href="#查找某值出现的次数：count" class="headerlink" title="查找某值出现的次数：count()"></a>查找某值出现的次数：count()</h4><p>count在string, map, set中可以用，在vector中不可以用</p>
-<h4 id="求最大公因数：gcd"><a href="#求最大公因数：gcd" class="headerlink" title="求最大公因数：gcd()"></a>求最大公因数：gcd()</h4><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><h4 id="stoi-stol-stoll"><a href="#stoi-stol-stoll" class="headerlink" title="stoi(),stol(),stoll()"></a>stoi(),stol(),stoll()</h4><p>converts a string to a signed integer </p>
+<h4 id="求最大公因数：gcd"><a href="#求最大公因数：gcd" class="headerlink" title="求最大公因数：gcd()"></a>求最大公因数：gcd()</h4><h3 id="include-1"><a href="#include-1" class="headerlink" title="#include  "></a>#include  <string></string></h3><h4 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">memset</span><span class="hljs-params">(<span class="hljs-type">void</span> *s, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> n)</span></span>; <br></code></pre></td></tr></table></figure>
+
+<h4 id="stoi-stol-stoll"><a href="#stoi-stol-stoll" class="headerlink" title="stoi(),stol(),stoll()"></a>stoi(),stol(),stoll()</h4><p>转化之前会进行范围检查，如果发现超出范围会发出 runtime error!</p>
+<p>converts a string to a signed integer </p>
 <h4 id="stof-stod"><a href="#stof-stod" class="headerlink" title="stof(),stod()"></a>stof(),stod()</h4><p>converts a string to a floating point value </p>
 <h4 id="to-string"><a href="#to-string" class="headerlink" title="to_string()"></a>to_string()</h4><p>converts an integral or floating point value to string</p>
 <h4 id="find-find-first-of"><a href="#find-find-first-of" class="headerlink" title="find(), find_first_of()"></a>find(), find_first_of()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">size_type <span class="hljs-title">find</span><span class="hljs-params">( <span class="hljs-type">const</span> basic_string&amp; str, size_type pos = <span class="hljs-number">0</span> )</span> <span class="hljs-type">const</span></span>;<br><span class="hljs-function">size_type <span class="hljs-title">find_first_of</span><span class="hljs-params">( <span class="hljs-type">const</span> basic_string&amp; str, size_type pos = <span class="hljs-number">0</span> )</span> <span class="hljs-type">const</span></span>;<br><br><span class="hljs-comment">//返回值：如果查找成功，则返回查找到的子字符串第一个字符的位置；否则返回string::npos</span><br></code></pre></td></tr></table></figure>
