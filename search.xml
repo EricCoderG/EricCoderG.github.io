@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>踩坑记录</title>
+    <url>/2022/10/22/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><span id="more"></span>
+
+]]></content>
+      <categories>
+        <category>踩坑</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Math</title>
     <url>/2022/10/17/Math/</url>
     <content><![CDATA[<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><span id="more"></span>
@@ -321,9 +331,9 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**Returns an iterator pointing to the first element in the range [first, last) that does not satisfy element &lt; value (or comp(element, value)), (i.e. greater or equal to), or last if no such element is found.</span><br><span class="hljs-comment">**/</span><br><span class="hljs-function">ForwardIt <span class="hljs-title">lower_bound</span><span class="hljs-params">( ForwardIt first, ForwardIt last, <span class="hljs-type">const</span> T&amp; value )</span></span>;<br><br><span class="hljs-function">ForwardIt <span class="hljs-title">upper_bound</span><span class="hljs-params">( ForwardIt first, ForwardIt last, <span class="hljs-type">const</span> T&amp; value )</span></span>;<br></code></pre></td></tr></table></figure>
 
 <h4 id="查找某值出现的次数：count"><a href="#查找某值出现的次数：count" class="headerlink" title="查找某值出现的次数：count()"></a>查找某值出现的次数：count()</h4><p>count在string, map, set中可以用，在vector中不可以用</p>
-<h3 id="include-lt-string-gt"><a href="#include-lt-string-gt" class="headerlink" title="#include  &lt;string&gt;"></a>#include  &lt;string&gt;</h3><h4 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">memset</span><span class="hljs-params">(<span class="hljs-type">void</span> *s, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> n)</span></span>; <br></code></pre></td></tr></table></figure>
+<h3 id="include-lt-cstring-gt"><a href="#include-lt-cstring-gt" class="headerlink" title="#include &lt;cstring&gt;"></a>#include &lt;cstring&gt;</h3><h4 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h4><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">memset</span><span class="hljs-params">(<span class="hljs-type">void</span> *s, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> n)</span></span>; <br></code></pre></td></tr></table></figure>
 
-<h4 id="stoi-stol-stoll"><a href="#stoi-stol-stoll" class="headerlink" title="stoi(),stol(),stoll()"></a>stoi(),stol(),stoll()</h4><p>转化之前会进行范围检查，如果发现超出范围会发出 runtime error!</p>
+<h3 id="include-lt-string-gt"><a href="#include-lt-string-gt" class="headerlink" title="#include  &lt;string&gt;"></a>#include  &lt;string&gt;</h3><h4 id="stoi-stol-stoll"><a href="#stoi-stol-stoll" class="headerlink" title="stoi(),stol(),stoll()"></a>stoi(),stol(),stoll()</h4><p>转化之前会进行范围检查，如果发现超出范围会发出 runtime error!</p>
 <p>converts a string to a signed integer </p>
 <h4 id="stof-stod"><a href="#stof-stod" class="headerlink" title="stof(),stod()"></a>stof(),stod()</h4><p>converts a string to a floating point value </p>
 <h4 id="to-string"><a href="#to-string" class="headerlink" title="to_string()"></a>to_string()</h4><p>converts an integral or floating point value to string</p>
