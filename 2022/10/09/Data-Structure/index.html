@@ -24,7 +24,7 @@
 <meta property="og:description" content="Binary-Tree, HashMap, Stack">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-09T11:33:30.000Z">
-<meta property="article:modified_time" content="2022-10-21T06:28:17.171Z">
+<meta property="article:modified_time" content="2022-10-23T00:29:49.358Z">
 <meta property="article:author" content="Ruilin Geng">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -111,7 +111,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Grl2939</strong>
+      <strong>EricCoderG</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          4.3k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          32 分钟
+          36 分钟
         
       </span>
     
@@ -306,6 +306,11 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">construct_paths</span><span class="hljs-params">(TreeNode* root, string path, vector&lt;string&gt;&amp; paths)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root != <span class="hljs-literal">nullptr</span>) &#123;<br>            path += <span class="hljs-built_in">to_string</span>(root-&gt;val);<br>            <span class="hljs-keyword">if</span> (root-&gt;left == <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;right == <span class="hljs-literal">nullptr</span>) &#123;  <br>                paths.<span class="hljs-built_in">push_back</span>(path);                      <br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                path += <span class="hljs-string">&quot;-&gt;&quot;</span>;  <span class="hljs-comment">// 当前节点不是叶子节点，继续递归遍历</span><br>                <span class="hljs-built_in">construct_paths</span>(root-&gt;left, path, paths);<br>                <span class="hljs-built_in">construct_paths</span>(root-&gt;right, path, paths);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">binaryTreePaths</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        vector&lt;string&gt; paths;<br>        <span class="hljs-built_in">construct_paths</span>(root, <span class="hljs-string">&quot;&quot;</span>, paths);<br>        <span class="hljs-keyword">return</span> paths;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>使用string path来记录过程，简化回溯过程</p>
+<h4 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h4><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">height</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">height</span>(root-&gt;left), <span class="hljs-built_in">height</span>(root-&gt;right)) + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(<span class="hljs-built_in">height</span>(root-&gt;left) - <span class="hljs-built_in">height</span>(root-&gt;right)) &lt;= <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">isBalanced</span>(root-&gt;left) &amp;&amp; <span class="hljs-built_in">isBalanced</span>(root-&gt;right);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h3 id="Hashmap"><a href="#Hashmap" class="headerlink" title="Hashmap"></a>Hashmap</h3><h4 id="字符串的排列"><a href="#字符串的排列" class="headerlink" title="字符串的排列"></a>字符串的排列</h4><p>给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。</p>
 <p>换句话说，s1 的排列之一是 s2 的 子串 。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">checkInclusion</span><span class="hljs-params">(string s1, string s2)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = s1.<span class="hljs-built_in">length</span>(), m = s2.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-keyword">if</span> (n &gt; m) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">cnt1</span><span class="hljs-params">(<span class="hljs-number">26</span>)</span>, <span class="hljs-title">cnt2</span><span class="hljs-params">(<span class="hljs-number">26</span>)</span></span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>            ++cnt1[s1[i] - <span class="hljs-string">&#x27;a&#x27;</span>];<br>            ++cnt2[s2[i] - <span class="hljs-string">&#x27;a&#x27;</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (cnt1 == cnt2) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n; i &lt; m; ++i) &#123;<br>            ++cnt2[s2[i] - <span class="hljs-string">&#x27;a&#x27;</span>];<br>            --cnt2[s2[i - n] - <span class="hljs-string">&#x27;a&#x27;</span>];<br>            <span class="hljs-keyword">if</span> (cnt1 == cnt2) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
