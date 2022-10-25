@@ -365,6 +365,8 @@
 
 <h4 id="erase"><a href="#erase" class="headerlink" title="erase()"></a>erase()</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">iterator <span class="hljs-title">erase</span><span class="hljs-params">(iterator p)</span></span>; <span class="hljs-comment">//删除p指向的字符</span><br><span class="hljs-function">string&amp; <span class="hljs-title">erase</span><span class="hljs-params">(<span class="hljs-type">size_t</span> pos=<span class="hljs-number">0</span>, <span class="hljs-type">size_t</span> len = npos)</span> <span class="hljs-comment">//删除从pos开始，长度为len的子串</span></span><br></code></pre></td></tr></table></figure>
 
+<h3 id="include-lt-sstream-gt"><a href="#include-lt-sstream-gt" class="headerlink" title="#include &lt;sstream&gt;"></a>#include &lt;sstream&gt;</h3><h4 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">string s = <span class="hljs-string">&quot;ab cd 123 abcde&quot;</span>;<br><span class="hljs-function">stringstream <span class="hljs-title">ss</span><span class="hljs-params">(s)</span></span>;<br></code></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>编程语言</category>
@@ -413,6 +415,8 @@
 
 <h4 id="输入未知个数的字符和字符串"><a href="#输入未知个数的字符和字符串" class="headerlink" title="输入未知个数的字符和字符串"></a>输入未知个数的字符和字符串</h4><p>此处以字符串为例子，cin会跳过空格以及换行符</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">string s;<br>vector&lt;string&gt; v;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; s) &#123;<br>    v.<span class="hljs-built_in">push_back</span>(s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读入一行以空格分割的字符串"><a href="#读入一行以空格分割的字符串" class="headerlink" title="读入一行以空格分割的字符串"></a>读入一行以空格分割的字符串</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">split</span><span class="hljs-params">(string s, <span class="hljs-type">char</span> seq)</span> </span>&#123;<br>    <span class="hljs-function">stringstream <span class="hljs-title">ss</span><span class="hljs-params">(s)</span></span>;<br>    vector&lt;string&gt; ans;<br>    string temp;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">getline</span>(ss, temp, seq)) &#123;<br>        ans.<span class="hljs-built_in">push_back</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    string s;<br>    <span class="hljs-built_in">getline</span>(cin, s);<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">strs</span><span class="hljs-params">(split(s, <span class="hljs-string">&#x27; &#x27;</span>))</span></span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>

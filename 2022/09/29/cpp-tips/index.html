@@ -24,7 +24,7 @@
 <meta property="og:description" content="这篇博客整理了自己学习cpp过程中遇到的一些小技巧和想法，会持续更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-29T13:55:46.000Z">
-<meta property="article:modified_time" content="2022-10-11T02:47:39.701Z">
+<meta property="article:modified_time" content="2022-10-25T03:19:05.906Z">
 <meta property="article:author" content="EricCoderG">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.8k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          13 分钟
+          16 分钟
         
       </span>
     
@@ -309,6 +309,8 @@
 
 <h4 id="输入未知个数的字符和字符串"><a href="#输入未知个数的字符和字符串" class="headerlink" title="输入未知个数的字符和字符串"></a>输入未知个数的字符和字符串</h4><p>此处以字符串为例子，cin会跳过空格以及换行符</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">string s;<br>vector&lt;string&gt; v;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; s) &#123;<br>    v.<span class="hljs-built_in">push_back</span>(s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="读入一行以空格分割的字符串"><a href="#读入一行以空格分割的字符串" class="headerlink" title="读入一行以空格分割的字符串"></a>读入一行以空格分割的字符串</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">split</span><span class="hljs-params">(string s, <span class="hljs-type">char</span> seq)</span> </span>&#123;<br>    <span class="hljs-function">stringstream <span class="hljs-title">ss</span><span class="hljs-params">(s)</span></span>;<br>    vector&lt;string&gt; ans;<br>    string temp;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">getline</span>(ss, temp, seq)) &#123;<br>        ans.<span class="hljs-built_in">push_back</span>(temp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    string s;<br>    <span class="hljs-built_in">getline</span>(cin, s);<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">strs</span><span class="hljs-params">(split(s, <span class="hljs-string">&#x27; &#x27;</span>))</span></span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
