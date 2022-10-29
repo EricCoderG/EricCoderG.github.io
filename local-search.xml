@@ -23,11 +23,11 @@
   
   
   <entry>
-    <title>踩坑记录</title>
-    <link href="/2022/10/22/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
-    <url>/2022/10/22/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    <title>无法连接本地数据库</title>
+    <link href="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <url>/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
     
-    <content type="html"><![CDATA[<h1 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h1><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<h1 id="IDEA无法连接本地数据库"><a href="#IDEA无法连接本地数据库" class="headerlink" title="IDEA无法连接本地数据库"></a>IDEA无法连接本地数据库</h1><span id="more"></span><p>由于重装了一次MySQL（重设密码也折腾了好久），自己在重连的时候一直报如下的bug，找了好久终于找到了问题所在</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/1.png" class><p>由于IDEA, DG的默认端口号都是3306，但是查找MySQL的端口号发现是0，所以无法连接。（第一次装的时候没出现这个问题，不知道是否是MacOS 13的坑）</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/2.png" class><p>接下来我们对port进行修改</p><p>首先手动关闭MySQL，这里发现关闭多次后仍然显示绿色。那么我们使用终端进行关闭</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/3.png" class><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">mysql -u root -p<br>//输入password之后 (mysql的并非是本地主机root的)<br>shutdown;<br></code></pre></td></tr></table></figure><p>如下图就弄好了</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/4.png" class><p>接下来我们需要找到传说中的mysql配置文件（找了半天还是没找到）</p><p>突然，无意间我瞥到了这句评论！！！！</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/5.png" class><p>我突然想到是不是长时间的MySQL运行（我设置的是开机即打开MySQL)使得端口发生改变，于是我重启MySQL,(在上一步中关闭)</p><p>！！！！！！！</p><img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/6.png" class><p>配置成功！！！！</p><p>总结：</p><p>感觉如果没必要还是不用开机启动MySQL，使用的时候再启动最好！</p>]]></content>
     
     
     <categories>
