@@ -99,7 +99,7 @@
   
   
   <entry>
-    <title>Prefix-Add</title>
+    <title>Prefix Add</title>
     <link href="/2022/10/15/Prefix-Add/"/>
     <url>/2022/10/15/Prefix-Add/</url>
     
@@ -137,7 +137,7 @@
   
   
   <entry>
-    <title>Data-Structure</title>
+    <title>Data Structure</title>
     <link href="/2022/10/09/Data-Structure/"/>
     <url>/2022/10/09/Data-Structure/</url>
     
@@ -156,7 +156,7 @@
   
   
   <entry>
-    <title>Double-Pointer</title>
+    <title>Double Pointer</title>
     <link href="/2022/10/09/Double-Pointer/"/>
     <url>/2022/10/09/Double-Pointer/</url>
     
@@ -175,7 +175,7 @@
   
   
   <entry>
-    <title>Other-Algorithm</title>
+    <title>Other Algorithm</title>
     <link href="/2022/10/09/Other-Algorithm/"/>
     <url>/2022/10/09/Other-Algorithm/</url>
     
@@ -194,9 +194,9 @@
   
   
   <entry>
-    <title>SlidingWindow</title>
-    <link href="/2022/10/09/SlidingWindow/"/>
-    <url>/2022/10/09/SlidingWindow/</url>
+    <title>Sliding Window</title>
+    <link href="/2022/10/09/Sliding-Window/"/>
+    <url>/2022/10/09/Sliding-Window/</url>
     
     <content type="html"><![CDATA[<h3 id="SlidingWindow"><a href="#SlidingWindow" class="headerlink" title="SlidingWindow"></a>SlidingWindow</h3><span id="more"></span><h4 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a>无重复字符的最长子串</h4><p><code>HashMap</code></p><p>给定一个字符串<code>s</code>，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>, temp = <span class="hljs-number">0</span>;<br>        unordered_map&lt;<span class="hljs-type">char</span>, <span class="hljs-type">int</span>&gt; hashmap;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (hashmap.<span class="hljs-built_in">find</span>(s[i]) == hashmap.<span class="hljs-built_in">end</span>()) &#123;<br>                temp++;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                temp = <span class="hljs-built_in">min</span>(temp + <span class="hljs-number">1</span>, i - hashmap[s[i]]);<br>            &#125;<br>            hashmap[s[i]] = i;<br>            res = <span class="hljs-built_in">max</span>(res, temp);<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h4><p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong></p><p>找出该数组中满足其和 <code>≥ target</code> 的长度最小的 <strong>连续子数组</strong> <code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度<strong>。</strong>如果不存在符合条件的子数组，返回 <code>0</code> 。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minSubArrayLen</span><span class="hljs-params">(<span class="hljs-type">int</span> s, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> ans = INT_MAX;<br>        <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>, end = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (end &lt; n) &#123;<br>            sum += nums[end];<br>            <span class="hljs-keyword">while</span> (sum &gt;= s) &#123;<br>                ans = <span class="hljs-built_in">min</span>(ans, end - start + <span class="hljs-number">1</span>);<br>                sum -= nums[start];<br>                start++;<br>            &#125;<br>            end++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans == INT_MAX ? <span class="hljs-number">0</span> : ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id="水果成篮"><a href="#水果成篮" class="headerlink" title="水果成篮"></a>水果成篮</h4><p><code>Hashmap</code></p><p>你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 <code>fruits</code> 表示，其中 <code>fruits[i]</code> 是第 <code>i</code> 棵树上的水果 <strong>种类</strong> 。</p><p>你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：</p><ul><li>你只有 <strong>两个</strong> 篮子，并且每个篮子只能装 <strong>单一类型</strong> 的水果。每个篮子能够装的水果总量没有限制。</li><li>你可以选择任意一棵树开始采摘，你必须从 <strong>每棵</strong> 树（包括开始采摘的树）上 <strong>恰好摘一个水果</strong> 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。</li><li>一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。</li></ul><p>给你一个整数数组 <code>fruits</code> ，返回你可以收集的水果的 <strong>最大</strong> 数目。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">totalFruit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; fruits)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = fruits.<span class="hljs-built_in">size</span>();<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; cnt;<br>        <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> r = <span class="hljs-number">0</span>; r &lt; n; r++) &#123;<br>            ++cnt[fruits[r]];<br>            <span class="hljs-keyword">while</span> ((<span class="hljs-type">int</span>)cnt.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">2</span>) &#123;<br>                cnt[fruits[l]]--;<br>                <span class="hljs-keyword">if</span> (cnt[fruits[l]] == <span class="hljs-number">0</span>) cnt.<span class="hljs-built_in">erase</span>(fruits[l]);<br>                l++;<br>            &#125;<br>            ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>);<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
     
@@ -270,7 +270,7 @@
   
   
   <entry>
-    <title>cpp-header</title>
+    <title>cpp header</title>
     <link href="/2022/10/04/cpp-header/"/>
     <url>/2022/10/04/cpp-header/</url>
     
@@ -289,7 +289,7 @@
   
   
   <entry>
-    <title>cpp-坑</title>
+    <title>cpp 坑</title>
     <link href="/2022/10/04/cpp-%E5%9D%91/"/>
     <url>/2022/10/04/cpp-%E5%9D%91/</url>
     
@@ -308,7 +308,7 @@
   
   
   <entry>
-    <title>cpp-tips</title>
+    <title>cpp tips</title>
     <link href="/2022/09/29/cpp-tips/"/>
     <url>/2022/09/29/cpp-tips/</url>
     
