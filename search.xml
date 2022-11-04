@@ -101,6 +101,30 @@
       </categories>
   </entry>
   <entry>
+    <title>Disjoint Set Union</title>
+    <url>/2022/11/03/Disjoint-Set-Union/</url>
+    <content><![CDATA[<h2 id="Disjoint-Set-Union"><a href="#Disjoint-Set-Union" class="headerlink" title="Disjoint Set Union"></a>Disjoint Set Union</h2><span id="more"></span>
+
+<h2 id="小蓝鲸分组"><a href="#小蓝鲸分组" class="headerlink" title="小蓝鲸分组"></a>小蓝鲸分组</h2><p>小蓝鲸要去旅游，现在要将他们分成任意大小的 <strong>两组</strong>。由于，每个小蓝鲸都有可能不喜欢其他小蓝鲸，这样的两个小蓝鲸不应该分到一个组里。</p>
+<p>现在需要你来判断给定的 n 个小蓝鲸(编号为1, 2 ..，n)是否能成功的分到两个组中。（提示：本题要采用并查集的方法）</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行输入 n 、 k ，分别表示小蓝鲸的个数和不能分在同一组的小蓝鲸对数</p>
+<p>接下来 k 行每行两个整数，代表小蓝鲸的编号</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一行，若能成功分为两组则输出 true， 否则输出 false</p>
+<h4 id="样例1"><a href="#样例1" class="headerlink" title="样例1"></a>样例1</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">4</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">4</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>第一个组为[1, 4]，</p>
+<p>第二个组为[2, 3]。</p>
+<h4 id="样例2"><a href="#样例2" class="headerlink" title="样例2"></a>样例2</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">3</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 10005</span><br><span class="hljs-type">int</span> a[N][<span class="hljs-number">2</span>];<br><span class="hljs-type">int</span> pre[N];<br><span class="hljs-comment">//改进查找算法：完成路径压缩，将 x的上级直接变为根结点，那么树的高度就会大大降低</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(pre[x] == x) <span class="hljs-keyword">return</span> x;<br>    <span class="hljs-comment">//先找到根结点 root[x]，然后 pre[x]=root[x]</span><br>    <span class="hljs-keyword">return</span> pre[x] = <span class="hljs-built_in">find</span>(pre[x]);<br>&#125;<br><span class="hljs-comment">//判断两个结点是否连通</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSame</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x) == <span class="hljs-built_in">find</span>(y);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-type">int</span> rootx = <span class="hljs-built_in">find</span>(x);<br>    <span class="hljs-type">int</span> rooty = <span class="hljs-built_in">find</span>(y);<br>    <span class="hljs-keyword">if</span>(rootx != rooty) pre[rootx] = rooty;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, k;<br>    cin &gt;&gt; n &gt;&gt; k;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) cin &gt;&gt; a[i][<span class="hljs-number">0</span>] &gt;&gt; a[i][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) pre[i] = i;<br>    <span class="hljs-comment">//确立两个不一样的根</span><br>    <span class="hljs-type">int</span> r1 = a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], r2 = a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], a[i][<span class="hljs-number">1</span>])) &#123;<br>            cout &lt;&lt; <span class="hljs-string">&quot;false&quot;</span>;<br>            <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; <span class="hljs-string">&quot;true&quot;</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-built_in">solve</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Double Pointer</title>
     <url>/2022/10/09/Double-Pointer/</url>
     <content><![CDATA[<h3 id="Double-Pointer"><a href="#Double-Pointer" class="headerlink" title="Double Pointer"></a>Double Pointer</h3><span id="more"></span>
@@ -217,6 +241,30 @@
 <p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getNum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;<br>            ans += (n % <span class="hljs-number">10</span>) * (n % <span class="hljs-number">10</span>);<br>            n /= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isHappy</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        unordered_set&lt;<span class="hljs-type">int</span>&gt; s;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-type">int</span> sum = <span class="hljs-built_in">getNum</span>(n);<br>            <span class="hljs-keyword">if</span> (sum == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-comment">//说明这个数字已经出现过了</span><br>            <span class="hljs-keyword">if</span> (s.<span class="hljs-built_in">find</span>(sum) != s.<span class="hljs-built_in">end</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            s.<span class="hljs-built_in">insert</span>(sum);<br>            n = sum;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
+<h4 id="到达终点数字"><a href="#到达终点数字" class="headerlink" title="到达终点数字"></a>到达终点数字</h4><p>在一根无限长的数轴上，你站在<code>0</code>的位置。终点在<code>target</code>的位置。</p>
+<p>你可以做一些数量的移动 <code>numMoves</code> :</p>
+<ul>
+<li>每次你可以选择向左或向右移动。</li>
+<li>第 <code>i</code> 次移动（从  <code>i == 1</code> 开始，到 <code>i == numMoves</code> ），在选择的方向上走 <code>i</code> 步。</li>
+</ul>
+<p>给定整数 <code>target</code> ，返回 <em>到达目标所需的 <strong>最小</strong> 移动次数(即最小 <code>numMoves</code> )</em> 。</p>
+<img src="/2022/10/17/Math/1.png" class>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">reachNumber</span><span class="hljs-params">(<span class="hljs-type">int</span> target)</span> </span>&#123;<br>        target = <span class="hljs-built_in">abs</span>(target);<br>        <span class="hljs-type">int</span> k = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (target &gt; <span class="hljs-number">0</span>) &#123;<br>            k++;<br>            target -= k;<br>        &#125;<br>        <span class="hljs-keyword">return</span> target % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? k : k + <span class="hljs-number">1</span> + k % <span class="hljs-number">2</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Prefix Add</title>
+    <url>/2022/10/15/Prefix-Add/</url>
+    <content><![CDATA[<h3 id="Prefix-Add"><a href="#Prefix-Add" class="headerlink" title="Prefix-Add"></a>Prefix-Add</h3><span id="more"></span>
+
+<h4 id="最大和子矩阵"><a href="#最大和子矩阵" class="headerlink" title="最大和子矩阵"></a>最大和子矩阵</h4><p>给定一个n * m的矩阵，找出其中和最大的子矩阵</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, m;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <span class="hljs-type">int</span> dp[n+<span class="hljs-number">1</span>][m+<span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span> (dp));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;<br>            <span class="hljs-type">int</span> num;<br>            cin &gt;&gt; num;<br>            dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + num;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//dp[i][j]代表在第j列中从第1行到第i行元素的和</span><br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i; j &lt;= n; j++)&#123;<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= m; k++)&#123;<br>                sum = sum + (dp[j][k] - dp[i<span class="hljs-number">-1</span>][k]);<br>                <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">0</span>) sum = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">if</span>(sum &gt; ans) ans = sum;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; ans;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>算法</category>
@@ -237,40 +285,17 @@
       </categories>
   </entry>
   <entry>
-    <title>Disjoint Set Union</title>
-    <url>/2022/11/03/Disjoint-Set-Union/</url>
-    <content><![CDATA[<h2 id="Disjoint-Set-Union"><a href="#Disjoint-Set-Union" class="headerlink" title="Disjoint Set Union"></a>Disjoint Set Union</h2><span id="more"></span>
+    <title>SpringBoot基本配置整理</title>
+    <url>/2022/10/29/SpringBoot%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h2 id="SpringBoot基本配置整理"><a href="#SpringBoot基本配置整理" class="headerlink" title="SpringBoot基本配置整理"></a>SpringBoot基本配置整理</h2><span id="more"></span>
 
-<h2 id="小蓝鲸分组"><a href="#小蓝鲸分组" class="headerlink" title="小蓝鲸分组"></a>小蓝鲸分组</h2><p>小蓝鲸要去旅游，现在要将他们分成任意大小的 <strong>两组</strong>。由于，每个小蓝鲸都有可能不喜欢其他小蓝鲸，这样的两个小蓝鲸不应该分到一个组里。</p>
-<p>现在需要你来判断给定的 n 个小蓝鲸(编号为1, 2 ..，n)是否能成功的分到两个组中。（提示：本题要采用并查集的方法）</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行输入 n 、 k ，分别表示小蓝鲸的个数和不能分在同一组的小蓝鲸对数</p>
-<p>接下来 k 行每行两个整数，代表小蓝鲸的编号</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一行，若能成功分为两组则输出 true， 否则输出 false</p>
-<h4 id="样例1"><a href="#样例1" class="headerlink" title="样例1"></a>样例1</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">4</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">4</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>   <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>解释：</p>
-<p>第一个组为[1, 4]，</p>
-<p>第二个组为[2, 3]。</p>
-<h4 id="样例2"><a href="#样例2" class="headerlink" title="样例2"></a>样例2</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">3</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 10005</span><br><span class="hljs-type">int</span> a[N][<span class="hljs-number">2</span>];<br><span class="hljs-type">int</span> pre[N];<br><span class="hljs-comment">//改进查找算法：完成路径压缩，将 x的上级直接变为根结点，那么树的高度就会大大降低</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(pre[x] == x) <span class="hljs-keyword">return</span> x;<br>    <span class="hljs-comment">//先找到根结点 root[x]，然后 pre[x]=root[x]</span><br>    <span class="hljs-keyword">return</span> pre[x] = <span class="hljs-built_in">find</span>(pre[x]);<br>&#125;<br><span class="hljs-comment">//判断两个结点是否连通</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSame</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x) == <span class="hljs-built_in">find</span>(y);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-type">int</span> rootx = <span class="hljs-built_in">find</span>(x);<br>    <span class="hljs-type">int</span> rooty = <span class="hljs-built_in">find</span>(y);<br>    <span class="hljs-keyword">if</span>(rootx != rooty) pre[rootx] = rooty;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, k;<br>    cin &gt;&gt; n &gt;&gt; k;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) cin &gt;&gt; a[i][<span class="hljs-number">0</span>] &gt;&gt; a[i][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) pre[i] = i;<br>    <span class="hljs-comment">//确立两个不一样的根</span><br>    <span class="hljs-type">int</span> r1 = a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], r2 = a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], a[i][<span class="hljs-number">1</span>])) &#123;<br>            cout &lt;&lt; <span class="hljs-string">&quot;false&quot;</span>;<br>            <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; <span class="hljs-string">&quot;true&quot;</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-built_in">solve</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h3><figure class="highlight properties"><table><tr><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">server</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">port</span>: <span class="hljs-string">80</span><br><span class="hljs-attr">spring</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">datasource</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">druid</span>:<span class="hljs-string"></span><br>      <span class="hljs-attr">driver-class-name</span>: <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>      <span class="hljs-attr">url</span>: <span class="hljs-string">jdbc:mysql://localhost:3306/todolist?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span><br>      <span class="hljs-attr">username</span>: <span class="hljs-string">root</span><br>      <span class="hljs-attr">password</span>: <span class="hljs-string">123456</span><br><br><span class="hljs-attr">mybatis-plus</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">global-config</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">db-config</span>:<span class="hljs-string"></span><br>      <span class="hljs-attr">table-prefix</span>: <span class="hljs-string">tbl_</span><br>      <span class="hljs-attr">id-type</span>: <span class="hljs-string">auto</span><br>  <span class="hljs-attr">configuration</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">log-impl</span>: <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br><br><br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>算法</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Prefix Add</title>
-    <url>/2022/10/15/Prefix-Add/</url>
-    <content><![CDATA[<h3 id="Prefix-Add"><a href="#Prefix-Add" class="headerlink" title="Prefix-Add"></a>Prefix-Add</h3><span id="more"></span>
-
-<h4 id="最大和子矩阵"><a href="#最大和子矩阵" class="headerlink" title="最大和子矩阵"></a>最大和子矩阵</h4><p>给定一个n * m的矩阵，找出其中和最大的子矩阵</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, m;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <span class="hljs-type">int</span> dp[n+<span class="hljs-number">1</span>][m+<span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span> (dp));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) &#123;<br>            <span class="hljs-type">int</span> num;<br>            cin &gt;&gt; num;<br>            dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + num;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//dp[i][j]代表在第j列中从第1行到第i行元素的和</span><br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i; j &lt;= n; j++)&#123;<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= m; k++)&#123;<br>                sum = sum + (dp[j][k] - dp[i<span class="hljs-number">-1</span>][k]);<br>                <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">0</span>) sum = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">if</span>(sum &gt; ans) ans = sum;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; ans;<br><br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>算法</category>
+        <category>SpringBoot</category>
       </categories>
   </entry>
   <entry>
@@ -300,20 +325,6 @@
 ]]></content>
       <categories>
         <category>算法</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot基本配置整理</title>
-    <url>/2022/10/29/SpringBoot%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<h2 id="SpringBoot基本配置整理"><a href="#SpringBoot基本配置整理" class="headerlink" title="SpringBoot基本配置整理"></a>SpringBoot基本配置整理</h2><span id="more"></span>
-
-<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <br>       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>   <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>           <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>               <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>           <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>       <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h3><figure class="highlight properties"><table><tr><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">server</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">port</span>: <span class="hljs-string">80</span><br><span class="hljs-attr">spring</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">datasource</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">druid</span>:<span class="hljs-string"></span><br>      <span class="hljs-attr">driver-class-name</span>: <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>      <span class="hljs-attr">url</span>: <span class="hljs-string">jdbc:mysql://localhost:3306/todolist?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span><br>      <span class="hljs-attr">username</span>: <span class="hljs-string">root</span><br>      <span class="hljs-attr">password</span>: <span class="hljs-string">123456</span><br><br><span class="hljs-attr">mybatis-plus</span>:<span class="hljs-string"></span><br>  <span class="hljs-attr">global-config</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">db-config</span>:<span class="hljs-string"></span><br>      <span class="hljs-attr">table-prefix</span>: <span class="hljs-string">tbl_</span><br>      <span class="hljs-attr">id-type</span>: <span class="hljs-string">auto</span><br>  <span class="hljs-attr">configuration</span>:<span class="hljs-string"></span><br>    <span class="hljs-attr">log-impl</span>: <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br><br><br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>SpringBoot</category>
       </categories>
   </entry>
   <entry>
@@ -349,6 +360,55 @@
 ]]></content>
       <categories>
         <category>编程语言</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>无法连接本地数据库</title>
+    <url>/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="IDEA无法连接本地数据库"><a href="#IDEA无法连接本地数据库" class="headerlink" title="IDEA无法连接本地数据库"></a>IDEA无法连接本地数据库</h1><span id="more"></span>
+
+<p>由于重装了一次MySQL（重设密码也折腾了好久），自己在重连的时候一直报如下的bug，找了好久终于找到了问题所在</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/1.png" class>
+
+<p>由于IDEA, DG的默认端口号都是3306，但是查找MySQL的端口号发现是0，所以无法连接。（第一次装的时候没出现这个问题，不知道是否是MacOS 13的坑）</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/2.png" class>
+
+<p>接下来我们对port进行修改</p>
+<p>首先手动关闭MySQL，这里发现关闭多次后仍然显示绿色。那么我们使用终端进行关闭</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/3.png" class>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mysql -u root -p<br>//输入password之后 (mysql的并非是本地主机root的)<br>shutdown;<br></code></pre></td></tr></table></figure>
+
+<p>如下图就弄好了</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/4.png" class>
+
+<p>接下来我们需要找到传说中的mysql配置文件（找了半天还是没找到）</p>
+<p>突然，无意间我瞥到了这句评论！！！！</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/5.png" class>
+
+<p>我突然想到是不是长时间的MySQL运行（我设置的是开机即打开MySQL)使得端口发生改变，于是我重启MySQL,(在上一步中关闭)</p>
+<p>！！！！！！！</p>
+<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/6.png" class>
+
+<p>配置成功！！！！</p>
+<p>总结：</p>
+<p>感觉如果没必要还是不用开机启动MySQL，使用的时候再启动最好！</p>
+]]></content>
+      <categories>
+        <category>踩坑</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>模板</title>
+    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
+<span id="more"></span>
+
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>模板</category>
       </categories>
   </entry>
   <entry>
@@ -400,55 +460,6 @@
 ]]></content>
       <categories>
         <category>编程语言</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>模板</title>
-    <url>/2022/10/05/%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<p>许多时候有一些常见的代码模板一直在复用，自己整理一下</p>
-<span id="more"></span>
-
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">add</span><span class="hljs-params">(string a, string b)</span> </span>&#123;<br>    <span class="hljs-type">int</span> i = a.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, j = b.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>, carry = <span class="hljs-number">0</span>;<br>    string res;<br>    <span class="hljs-keyword">while</span> (i &gt;= <span class="hljs-number">0</span> || j &gt;= <span class="hljs-number">0</span> || carry &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-type">int</span> x = i &gt;= <span class="hljs-number">0</span> ? a[i] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> y = j &gt;= <span class="hljs-number">0</span> ? b[j] - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> sum = x + y + carry;<br>        res.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;0&#x27;</span> + sum % <span class="hljs-number">10</span>);<br>        carry = sum / <span class="hljs-number">10</span>;<br>        i--;<br>        j--;<br>    &#125;<br>    <span class="hljs-comment">//注意需要翻转</span><br>    <span class="hljs-built_in">reverse</span>(res.<span class="hljs-built_in">begin</span>(), res.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>模板</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>无法连接本地数据库</title>
-    <url>/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="IDEA无法连接本地数据库"><a href="#IDEA无法连接本地数据库" class="headerlink" title="IDEA无法连接本地数据库"></a>IDEA无法连接本地数据库</h1><span id="more"></span>
-
-<p>由于重装了一次MySQL（重设密码也折腾了好久），自己在重连的时候一直报如下的bug，找了好久终于找到了问题所在</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/1.png" class>
-
-<p>由于IDEA, DG的默认端口号都是3306，但是查找MySQL的端口号发现是0，所以无法连接。（第一次装的时候没出现这个问题，不知道是否是MacOS 13的坑）</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/2.png" class>
-
-<p>接下来我们对port进行修改</p>
-<p>首先手动关闭MySQL，这里发现关闭多次后仍然显示绿色。那么我们使用终端进行关闭</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/3.png" class>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">mysql -u root -p<br>//输入password之后 (mysql的并非是本地主机root的)<br>shutdown;<br></code></pre></td></tr></table></figure>
-
-<p>如下图就弄好了</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/4.png" class>
-
-<p>接下来我们需要找到传说中的mysql配置文件（找了半天还是没找到）</p>
-<p>突然，无意间我瞥到了这句评论！！！！</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/5.png" class>
-
-<p>我突然想到是不是长时间的MySQL运行（我设置的是开机即打开MySQL)使得端口发生改变，于是我重启MySQL,(在上一步中关闭)</p>
-<p>！！！！！！！</p>
-<img src="/2022/10/22/%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E5%BA%93/6.png" class>
-
-<p>配置成功！！！！</p>
-<p>总结：</p>
-<p>感觉如果没必要还是不用开机启动MySQL，使用的时候再启动最好！</p>
-]]></content>
-      <categories>
-        <category>踩坑</category>
       </categories>
   </entry>
 </search>
