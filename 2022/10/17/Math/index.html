@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ericcoderg.top/2022/10/17/Math/1.png">
 <meta property="article:published_time" content="2022-10-17T07:30:38.000Z">
-<meta property="article:modified_time" content="2022-11-04T01:10:39.182Z">
+<meta property="article:modified_time" content="2022-11-05T08:42:58.508Z">
 <meta property="article:author" content="EricCoderG">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ericcoderg.top/2022/10/17/Math/1.png">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          841 字
+          1.5k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          8 分钟
+          13 分钟
         
       </span>
     
@@ -314,6 +314,14 @@
 <img src="/2022/10/17/Math/1.png" srcset="/img/loading.gif" lazyload class>
 
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">reachNumber</span><span class="hljs-params">(<span class="hljs-type">int</span> target)</span> </span>&#123;<br>        target = <span class="hljs-built_in">abs</span>(target);<br>        <span class="hljs-type">int</span> k = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (target &gt; <span class="hljs-number">0</span>) &#123;<br>            k++;<br>            target -= k;<br>        &#125;<br>        <span class="hljs-keyword">return</span> target % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? k : k + <span class="hljs-number">1</span> + k % <span class="hljs-number">2</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="美丽整数的最小增量"><a href="#美丽整数的最小增量" class="headerlink" title="美丽整数的最小增量"></a>美丽整数的最小增量</h4><p><code>Greedy</code></p>
+<p>给你两个正整数 n 和 target 。</p>
+<p>如果某个整数每一位上的数字相加小于或等于 target ，则认为这个整数是一个 美丽整数 。</p>
+<p>找出并返回满足 n + x 是 美丽整数 的最小非负整数 x 。生成的输入保证总可以使 n 变成一个美丽整数。</p>
+<p>例子：</p>
+<p>输入：n &#x3D; 16, target &#x3D; 6<br>输出：4<br>解释：最初，n 是 16 ，且其每一位数字的和是 1 + 6 &#x3D; 7 。在加 4 之后，n 变为 20 且每一位数字的和变成 2 + 0 &#x3D; 2 。可以证明无法加上一个小于 4 的非负整数使 n 变成一个美丽整数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br>    <span class="hljs-comment">/** 求数位和 */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getSum</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;<br>            sum += n % <span class="hljs-number">10</span>;<br>            n /= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">long</span> <span class="hljs-title function_">makeIntegerBeautiful</span><span class="hljs-params">(<span class="hljs-type">long</span> n, <span class="hljs-type">int</span> target)</span> &#123;<br><br>        <span class="hljs-keyword">if</span> (getSum(n) &lt;= target) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-type">long</span> <span class="hljs-variable">mod</span> <span class="hljs-operator">=</span> <span class="hljs-number">10L</span>, res = <span class="hljs-number">0L</span>;<br><br>        <span class="hljs-keyword">while</span> (getSum(n) &gt; target) &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> mod - (n % mod);<br>            <span class="hljs-comment">//想要进位加的最小值就是t</span><br>            res += t;<br>            n += t;<br>            <span class="hljs-comment">//对这个位操作不行就进到下一位</span><br>            mod *= <span class="hljs-number">10</span>;<br>        &#125;             <br><br>        <span class="hljs-keyword">return</span> res;                                                   <br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
