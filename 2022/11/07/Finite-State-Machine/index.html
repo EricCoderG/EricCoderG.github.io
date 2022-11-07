@@ -16,21 +16,24 @@
   <meta name="author" content="EricCoderG">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Disjoint Set Union">
+    <meta name="description" content="有效状态机有效数字有效数字（按顺序）可以分成以下几个部分： 一个 小数 或者 整数（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数小数（按顺序）可以分成以下几个部分： （可选）一个符号字符（’+’ 或 ‘-‘）下述格式之一：至少一位数字，后面跟着一个点 ‘.’至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字一个点 ‘.’ ，后面跟着至少一位数字整数（按顺序）可以分成以下几个部分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Disjoint Set Union">
-<meta property="og:url" content="https://ericcoderg.top/2022/11/03/Disjoint-Set-Union/index.html">
+<meta property="og:title" content="Finite State Machine">
+<meta property="og:url" content="https://ericcoderg.top/2022/11/07/Finite-State-Machine/index.html">
 <meta property="og:site_name" content="EricCoderG&#39;s Blog">
-<meta property="og:description" content="Disjoint Set Union">
+<meta property="og:description" content="有效状态机有效数字有效数字（按顺序）可以分成以下几个部分： 一个 小数 或者 整数（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数小数（按顺序）可以分成以下几个部分： （可选）一个符号字符（’+’ 或 ‘-‘）下述格式之一：至少一位数字，后面跟着一个点 ‘.’至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字一个点 ‘.’ ，后面跟着至少一位数字整数（按顺序）可以分成以下几个部分">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-03T12:30:34.000Z">
-<meta property="article:modified_time" content="2022-11-04T00:58:43.197Z">
+<meta property="og:image" content="https://ericcoderg.top/2022/11/07/Finite-State-Machine/1.png">
+<meta property="og:image" content="https://ericcoderg.top/2022/11/07/Finite-State-Machine/2.png">
+<meta property="article:published_time" content="2022-11-07T07:25:19.000Z">
+<meta property="article:modified_time" content="2022-11-07T07:36:31.178Z">
 <meta property="article:author" content="EricCoderG">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericcoderg.top/2022/11/07/Finite-State-Machine/1.png">
   
   
   
-  <title>Disjoint Set Union - EricCoderG&#39;s Blog</title>
+  <title>Finite State Machine - EricCoderG&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Disjoint Set Union"></span>
+            <span id="subtitle" data-typed-text="Finite State Machine"></span>
           
         </div>
 
@@ -223,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-03 20:30" pubdate>
-          2022年11月3日 晚上
+        <time datetime="2022-11-07 15:25" pubdate>
+          2022年11月7日 下午
         </time>
       </span>
     
@@ -235,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.7k 字
         
       </span>
     
@@ -246,7 +249,7 @@
         
         
         
-          12 分钟
+          15 分钟
         
       </span>
     
@@ -284,26 +287,24 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Disjoint Set Union</h1>
+            <h1 style="display: none">Finite State Machine</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Disjoint-Set-Union"><a href="#Disjoint-Set-Union" class="headerlink" title="Disjoint Set Union"></a>Disjoint Set Union</h2><span id="more"></span>
+                <h2 id="有效状态机"><a href="#有效状态机" class="headerlink" title="有效状态机"></a>有效状态机</h2><h3 id="有效数字"><a href="#有效数字" class="headerlink" title="有效数字"></a>有效数字</h3><p>有效数字（按顺序）可以分成以下几个部分：</p>
+<p>一个 小数 或者 整数<br>（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数<br>小数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>下述格式之一：<br>至少一位数字，后面跟着一个点 ‘.’<br>至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字<br>一个点 ‘.’ ，后面跟着至少一位数字<br>整数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>至少一位数字<br>部分有效数字列举如下：[“2”, “0089”, “-0.1”, “+3.14”, “4.”, “-.9”, “2e10”, “-90E3”, “3e+7”, “+6e-1”, “53.5e93”, “-123.456e789”]</p>
+<p>部分无效数字列举如下：[“abc”, “1a”, “1e”, “e3”, “99e2.5”, “–6”, “-+3”, “95a54e53”]</p>
+<p>给你一个字符串 s ，如果 s 是一个 有效数字 ，请返回 true 。</p>
+<h4 id="分析（表驱动法）"><a href="#分析（表驱动法）" class="headerlink" title="分析（表驱动法）"></a>分析（表驱动法）</h4><p>构建出来的状态机如封面图片所示（红色为 终止状态，蓝色为 中间状态）。根据《编译原理》的解释，DFA 从状态 0 接受串 s 作为输入。当s耗尽的时候如果当前状态处于中间状态，则拒绝；如果到达终止状态，则接受。</p>
+<p>然后，根据 DFA 列出如下的状态跳转表，之后我们就可以采用 表驱动法 进行编程实现了。需要注意的是，这里面多了一个状态 8，是用于处理串后面的若干个多余空格的。所以，所有的终止态都要跟上一个状态 8。其中，有一些状态标识为-1，是表示遇到了一些意外的字符，可以直接停止后续的计算。状态跳转表如下：</p>
+<img src="/2022/11/07/Finite-State-Machine/1.png" srcset="/img/loading.gif" lazyload class>
 
-<h2 id="小蓝鲸分组"><a href="#小蓝鲸分组" class="headerlink" title="小蓝鲸分组"></a>小蓝鲸分组</h2><p>小蓝鲸要去旅游，现在要将他们分成任意大小的 <strong>两组</strong>。由于，每个小蓝鲸都有可能不喜欢其他小蓝鲸，这样的两个小蓝鲸不应该分到一个组里。</p>
-<p>现在需要你来判断给定的 n 个小蓝鲸(编号为1, 2 ..，n)是否能成功的分到两个组中。（提示：本题要采用并查集的方法）</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行输入 n 、 k ，分别表示小蓝鲸的个数和不能分在同一组的小蓝鲸对数</p>
-<p>接下来 k 行每行两个整数，代表小蓝鲸的编号</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一行，若能成功分为两组则输出 true， 否则输出 false</p>
-<h4 id="样例1"><a href="#样例1" class="headerlink" title="样例1"></a>样例1</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">4</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">4</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
+<img src="/2022/11/07/Finite-State-Machine/2.png" srcset="/img/loading.gif" lazyload class>
 
-<p>解释：</p>
-<p>第一个组为[1, 4]，</p>
-<p>第二个组为[2, 3]。</p>
-<h4 id="样例2"><a href="#样例2" class="headerlink" title="样例2"></a>样例2</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">3</span> <span class="hljs-number">3</span><br><span class="hljs-number">1</span> <span class="hljs-number">2</span><br><span class="hljs-number">1</span> <span class="hljs-number">3</span><br><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> ll;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 10005</span><br><span class="hljs-type">int</span> a[N][<span class="hljs-number">2</span>];<br><span class="hljs-type">int</span> pre[N];<br><span class="hljs-comment">//改进查找算法：完成路径压缩，将 x的上级直接变为根结点，那么树的高度就会大大降低</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(pre[x] == x) <span class="hljs-keyword">return</span> x;<br>    <span class="hljs-comment">//先找到根结点 root[x]，然后 pre[x]=root[x]</span><br>    <span class="hljs-keyword">return</span> pre[x] = <span class="hljs-built_in">find</span>(pre[x]);<br>&#125;<br><span class="hljs-comment">//判断两个结点是否连通</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSame</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x) == <span class="hljs-built_in">find</span>(y);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-type">int</span> rootx = <span class="hljs-built_in">find</span>(x);<br>    <span class="hljs-type">int</span> rooty = <span class="hljs-built_in">find</span>(y);<br>    <span class="hljs-keyword">if</span>(rootx != rooty) pre[rootx] = rooty;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, k;<br>    cin &gt;&gt; n &gt;&gt; k;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) cin &gt;&gt; a[i][<span class="hljs-number">0</span>] &gt;&gt; a[i][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) pre[i] = i;<br>    <span class="hljs-comment">//确立两个不一样的根</span><br>    <span class="hljs-type">int</span> r1 = a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], r2 = a[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r1)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r2);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">1</span>], r2)) &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">0</span>], r1);<br>            <span class="hljs-built_in">join</span>(a[i][<span class="hljs-number">1</span>], r2);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isSame</span>(a[i][<span class="hljs-number">0</span>], a[i][<span class="hljs-number">1</span>])) &#123;<br>            cout &lt;&lt; <span class="hljs-string">&quot;false&quot;</span>;<br>            <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; <span class="hljs-string">&quot;true&quot;</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-built_in">solve</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isNumber</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(s.<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">size</span>();<br><br>        <span class="hljs-type">int</span> state = <span class="hljs-number">0</span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">finals</span><span class="hljs-params">(&#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;)</span></span>; <span class="hljs-comment">// 合法的终止状态</span><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">transfer</span>(&#123;<br>                &#123;<span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">6</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">3</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">8</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">3</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">4</span>,  <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">7</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">8</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">5</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">8</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">6</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">5</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#123;<span class="hljs-number">8</span>,  <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;,<br>                &#125;);<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>            state = transfer[state][_make(s[i])];<br>            <span class="hljs-keyword">if</span>(state &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> finals[state];<br>    &#125;<br><br>    <span class="hljs-type">int</span> _make(<span class="hljs-type">const</span> <span class="hljs-type">char</span>&amp; c) &#123;<br>        <span class="hljs-keyword">switch</span>(c) &#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27; &#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;-&#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;.&#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;e&#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;E&#x27;</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>;<br>            <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> _number(c);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-type">int</span> _number(<span class="hljs-type">const</span> <span class="hljs-type">char</span>&amp; c) &#123;<br>        <span class="hljs-keyword">if</span>(c &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="hljs-string">&#x27;9&#x27;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -343,8 +344,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Disjoint Set Union</div>
-      <div>https://ericcoderg.top/2022/11/03/Disjoint-Set-Union/</div>
+      <div>Finite State Machine</div>
+      <div>https://ericcoderg.top/2022/11/07/Finite-State-Machine/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +357,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月3日</div>
+          <div>2022年11月7日</div>
         </div>
       
       
@@ -388,18 +389,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/07/Finite-State-Machine/" title="Finite State Machine">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Finite State Machine</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/29/SpringBoot%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/" title="SpringBoot基本配置整理">
-                        <span class="hidden-mobile">SpringBoot基本配置整理</span>
+                      <a href="/2022/11/03/Disjoint-Set-Union/" title="Disjoint Set Union">
+                        <span class="hidden-mobile">Disjoint Set Union</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
